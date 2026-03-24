@@ -1,0 +1,262 @@
+/* CONTAINER PRINCIPAL */
+.presentation-container {
+  padding: 120px 20px;
+  background-color: #fcfcfcd2;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  overflow: hidden;
+}
+
+.presentation-wrapper {
+  max-width: 1300px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+/* MOSAICO DE IMAGENS */
+.image-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 180px);
+  gap: 15px;
+  position: relative;
+  grid-auto-flow: dense; 
+}
+
+.mosaic-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.4s ease;
+}
+
+.mosaic-item:hover {
+  transform: translateY(-5px);
+  z-index: 5;
+}
+
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ajustes de Tamanho do Mosaico (Bento Grid) */
+.large {
+  grid-row: span 2;
+  grid-column: span 1;
+}
+
+.medium {
+  grid-column: span 2;
+}
+
+/* BADGE FLUTUANTE */
+.experience-badge {
+  position: absolute;
+  top: 10%; 
+  left: -5%; 
+  z-index: 10;
+}
+
+.badge-floating-content {
+  background: rgba(210, 180, 140, 0.95); /* Bege Dourado */
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 0 30px 0 30px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(210, 180, 140, 0.3);
+  animation: floatEffect 4s ease-in-out infinite;
+}
+
+.badge-floating-content span {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.badge-floating-content p {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CONTEÚDO DE TEXTO */
+.text-content {
+  padding-left: 20px;
+}
+
+.upper-title {
+  color: #D2B48C;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-family: serif;
+  font-size: 3.2rem;
+  color: #2C1E12; /* Marrom Café */
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.italic {
+  font-style: italic;
+  color: #D2B48C;
+}
+
+.description-block p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* LINHA DE AÇÃO (STATS + BOTÃO) */
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.stats-row {
+  display: flex;
+  gap: 30px;
+}
+
+.stat-item h4 {
+  font-size: 2rem;
+  color: #2C1E12;
+  margin-bottom: 2px;
+}
+
+.stat-item p {
+  color: #D2B48C;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background-color: #e5e5e5;
+}
+
+.quote-button {
+  background-color: #4B5320; /* Verde Caqui */
+  color: #fff;
+  border: none;
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 10px 20px rgba(75, 83, 32, 0.2);
+}
+
+.quote-button:hover {
+  background-color: #353b16;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(75, 83, 32, 0.3);
+}
+
+/* SEÇÃO DE VÍDEO FINAL */
+.video-section {
+  width: 100%;
+  max-width: 1150px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.video-header {
+  margin-bottom: 50px;
+}
+
+.video-title {
+  font-family: serif;
+  font-size: 3rem;
+  color: #2C1E12;
+  margin-bottom: 12px;
+}
+
+.video-subtitle {
+  color: #D2B48C;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.video-container {
+  border-radius: 24px;
+  overflow: hidden;
+  background: transparent;
+
+}
+
+/* ANIMAÇÕES E MEDIA QUERIES */
+@keyframes floatEffect {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 1024px) {
+  .presentation-wrapper {
+    display: flex;
+    flex-direction: column-reverse; /* Texto em cima, Imagens embaixo */
+    gap: 60px;
+    text-align: center;
+  }
+
+  .image-mosaic {
+    max-width: 600px;
+    margin: 0 auto;
+    grid-template-rows: repeat(3, 140px);
+  }
+
+  .text-content {
+    padding-left: 0;
+  }
+
+  .action-row {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .stats-row {
+    justify-content: center;
+  }
+
+  .video-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .text-content {
+    margin-top: -330px;
+    padding-left: 20px;
+  }
+}
