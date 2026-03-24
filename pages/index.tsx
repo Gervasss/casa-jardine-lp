@@ -1,7 +1,10 @@
 
+import EventsSection from "@/src/components/EventsSection/EventsSection";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
+import InstagramSection from "@/src/components/InstagramSection/InstagramSection";
 import PresentationSection from "@/src/components/PresentationSection/PresentationSection";
 import ProfileSection from "@/src/components/ProfileSection/ProfileSection";
+import VideoShowcaseSection from "@/src/components/VideoShowcaseSection/VideoShowcaseSection";
 import Head from "next/head";
 import Script from "next/script";
 
@@ -139,6 +142,9 @@ function HomePage() {
               <HeroSection/>
               <PresentationSection/>
               <ProfileSection/>
+              <EventsSection/>
+              <InstagramSection/>
+              <VideoShowcaseSection/>
 
               
             </main>

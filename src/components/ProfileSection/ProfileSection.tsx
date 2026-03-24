@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import ProfileCard from "@/src/components/ui/profileCard";
+import ProfileCard from "@/src/ui/profileCard";
 import styles from './ProfileSection.module.css';
 import { IoCalendarOutline, IoStarOutline, IoRibbonOutline, IoCheckmarkDoneOutline } from 'react-icons/io5';
 
@@ -44,7 +44,7 @@ const ProfileSection = () => {
       >
         <span className={styles['upper-title']}>Conheça as Mentes</span>
         <h2 className={styles['main-title']}>
-          Quem faz a <span className={styles['italic']}>Casa Jardine</span> acontecer.
+          Quem faz a <span className={styles['italic']}>Casa Jardine</span> acontecer
         </h2>
         <p className={styles['description']}>
           Combinamos anos de experiência em hospitalidade e design para criar o cenário perfeito para o seu dia.

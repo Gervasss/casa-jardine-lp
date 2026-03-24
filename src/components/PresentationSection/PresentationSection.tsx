@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ImageZoom } from "@/src/components/ui/ImageZoom";
-import VideoPlayer from "@/src/components/ui/video-player";
+import { ImageZoom } from "@/src/ui/ImageZoom";
+import VideoPlayer from "@/src/ui/video-player";
 import styles from './PresentationSection.module.css';
 import { IoChevronForward } from "react-icons/io5";
 
@@ -100,7 +100,7 @@ const PresentationSection = () => {
                     </motion.span>
 
                     <motion.h2 className={styles['main-title']} variants={itemVariants}>
-                        Onde a natureza abraça a sua <span className={styles['italic']}>celebração</span>.
+                        Onde a natureza abraça a sua <span className={styles['italic']}>celebração</span>
                     </motion.h2>
 
                     <motion.div className={styles['description-block']} variants={itemVariants}>
@@ -111,6 +111,12 @@ const PresentationSection = () => {
                         <p>
                             Com uma arquitetura que integra o rústico ao sofisticado, oferecemos um ambiente versátil,
                             perfeito para quem busca exclusividade e a beleza serena de nossos <strong>jardins</strong>.
+                        </p>
+                        <p>
+                            Nossa paixão por criar experiências vai além das nossas paredes.
+                            Também <strong>planejamos e organizamos eventos em locais externos</strong>, levando nossa
+                            curadoria estética e foco rigoroso em <strong>design e ambientação</strong> para qualquer
+                            lugar, garantindo que a essência da Casa Jardine acompanhe o seu projeto onde quer que ele aconteça.
                         </p>
                     </motion.div>
 
@@ -150,7 +156,7 @@ const PresentationSection = () => {
                 <div className={styles['video-container']}>
                     <VideoPlayer
                         src="/casa-jardine.mp4"
-                        
+
                     />
                 </div>
             </motion.div>

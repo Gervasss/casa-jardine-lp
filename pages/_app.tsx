@@ -7,7 +7,7 @@ import '@/src/styles/globals.css';
 
 
 // carrega o efeito só no client (evita mismatch no SSR)
-const GradualBlur = dynamic(() => import('@/src/components/ui/GradualBlur'), {
+const GradualBlur = dynamic(() => import('@/src/ui/GradualBlur'), {
   ssr: false,
 });
 

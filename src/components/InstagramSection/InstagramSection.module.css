@@ -1,0 +1,207 @@
+.container {
+  padding: 120px 20px;
+  background-color: #FAF9F6;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 60px;
+}
+
+.handle {
+  color: #D2B48C;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.title {
+  font-family: serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: #2C1E12;
+  margin-top: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.post-card {
+  text-decoration: none;
+  display: block;
+}
+
+.image-container {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 30, 18, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+  color: white;
+  padding: 25px;
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.image-container:hover img {
+  transform: scale(1.1);
+}
+
+.stats {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.caption-excerpt {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.view-on-insta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 50px;
+}
+
+.followButton {
+    position: relative;
+    padding: 20px 50px;
+    background-color: #c3b091; 
+    color: #fdfcf0; 
+    border-radius: 0px; 
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    border: 1px solid #c3b091;
+    
+ 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(195, 176, 145, 0.2);
+}
+
+.followButton:hover {
+    background-color: transparent;
+    color: #c3b091;
+    border: 1px solid #c3b091;
+    
+    /* --- EFEITO DE GLOW --- */
+    /* Aura caqui suave para destacar o botão no fundo bege */
+    box-shadow: 0 0 20px rgba(195, 176, 145, 0.4), 
+                0 0 40px rgba(195, 176, 145, 0.2);
+    
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+}
+
+
+.followButton svg {
+    font-size: 1.2rem;
+    transition: transform 0.4s ease;
+}
+
+.followButton:hover svg {
+    transform: translateX(8px);
+}
+
+/* Efeito de preenchimento lateral no hover */
+.followButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #fdfcf0;
+    transition: width 0.4s ease;
+    z-index: -1;
+}
+
+.followButton:hover::before {
+    width: 100%;
+}
+
+
+.followButton:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 0 10px rgba(195, 176, 145, 0.3);
+}
+
+.loading-container {
+  padding: 100px;
+  text-align: center;
+}
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #4B5320;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}

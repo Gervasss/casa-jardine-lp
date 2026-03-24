@@ -1,5 +1,5 @@
 import React from 'react';
-import GradientMenu from "@/src/components/ui/GradientMenu";
+import GradientMenu from "@/src/ui/GradientMenu";
 import styles from './HeroSection.module.css';
 
 const HeroSection = () => {
@@ -17,7 +17,7 @@ const HeroSection = () => {
             {/* Conteúdo Principal (Centralizado) */}
             <div className={styles['hero-content']}>
                 <h1 className={styles['hero-title']}>
-                    Onde seus sonhos encontram o <span className={styles['hero-title-italic']}>cenário perfeito</span>.
+                    Onde seus sonhos encontram o <span className={styles['hero-title-italic']}>cenário perfeito</span>
                 </h1>
 
                 <p className={styles['hero-description']}>
