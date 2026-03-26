@@ -7,7 +7,7 @@ import { MapPin, Clock3, Navigation } from 'lucide-react';
 
 export default function LocationSection() {
   
-  const GOOGLE_MAPS_EXTERNAL_URL = "https://www.google.com/maps/place/Casa+Jardine+-+Espa%C3%A7o+de+Eventos/@-14.8576402,-40.8385317,17z/data=!3m1!4b1!4m6!3m5!1s0x7463b3686c066e7:0x228be3f098048688!8m2!3d-14.8576402!4d-40.8359568!16s%2Fg%2F11v5_9_20";
+  const GOOGLE_MAPS_EXTERNAL_URL = "https://www.google.com/maps/place/Casa+Jardine/@-14.8658877,-40.8279386,17z/data=!3m1!4b1!4m6!3m5!1s0x7463b2a87cf723b:0x4ce508756700b31f!8m2!3d-14.8658929!4d-40.8253637!16s%2Fg%2F11v64zcmj8?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D";
 
   return (
     <section className={styles.section} id="loc">
