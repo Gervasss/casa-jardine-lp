@@ -46,14 +46,22 @@ function FrameComponent({
   isHovered,
 }: FrameComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
+  // Gerencia o Play/Pause baseado no estado de interação
   useEffect(() => {
+    const videoElement = videoRef.current
+    if (!videoElement) return
+
     if (isHovered) {
-      videoRef.current?.play()
+      videoElement.play().catch(() => {})
     } else {
-      videoRef.current?.pause()
+      videoElement.pause()
     }
   }, [isHovered])
+
+  // Define o caminho da thumbnail (ajustado para .png como solicitado)
+  const posterUrl = video.replace('.mp4', '.png')
 
   return (
     <div
@@ -62,6 +70,7 @@ function FrameComponent({
         width,
         height,
         transition: "width 0.3s ease-in-out, height 0.3s ease-in-out",
+        backgroundColor: "#1a1a15" 
       }}
     >
       <div className="relative w-full h-full overflow-hidden">
@@ -78,77 +87,56 @@ function FrameComponent({
           }}
         >
           <div
-            className="w-full h-full overflow-hidden"
+            className="w-full h-full overflow-hidden relative"
             style={{
               transform: `scale(${mediaSize})`,
               transformOrigin: "center",
               transition: "transform 0.3s ease-in-out",
             }}
           >
+            {/* THUMBNAIL ESTÁTICA - Com Blur e P&B quando pausado */}
+            <img 
+              src={posterUrl} 
+              alt="Casa Jardine preview"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+              style={{ 
+                opacity: isVideoLoaded && isHovered ? 0 : 1,
+                filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(4px)",
+                transform: isHovered ? "scale(1)" : "scale(1.1)", 
+                zIndex: 2
+              }}
+            />
+
+            {/* VÍDEO REAL - Ganha foco e cor ao interagir */}
             <video
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-all duration-500"
               src={video}
               loop
               muted
               playsInline
+              preload="metadata"
               ref={videoRef}
+              onPlay={() => setIsVideoLoaded(true)}
+              style={{ 
+                zIndex: 1,
+                filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(10px)",
+                transform: isHovered ? "scale(1)" : "scale(1.1)"
+              }}
             />
           </div>
         </div>
 
+        {/* Molduras decorativas (Showcase Frame) */}
         {showFrame && (
-          <div className="absolute inset-0" style={{ zIndex: 2 }}>
-            <div
-              className="absolute top-0 left-0 w-16 h-16 bg-contain bg-no-repeat"
-              style={{ backgroundImage: `url(${corner})` }}
-            />
-            <div
-              className="absolute top-0 right-0 w-16 h-16 bg-contain bg-no-repeat"
-              style={{ backgroundImage: `url(${corner})`, transform: "scaleX(-1)" }}
-            />
-            <div
-              className="absolute bottom-0 left-0 w-16 h-16 bg-contain bg-no-repeat"
-              style={{ backgroundImage: `url(${corner})`, transform: "scaleY(-1)" }}
-            />
-            <div
-              className="absolute bottom-0 right-0 w-16 h-16 bg-contain bg-no-repeat"
-              style={{ backgroundImage: `url(${corner})`, transform: "scale(-1, -1)" }}
-            />
-
-            <div
-              className="absolute top-0 left-16 right-16 h-16"
-              style={{
-                backgroundImage: `url(${edgeHorizontal})`,
-                backgroundSize: "auto 64px",
-                backgroundRepeat: "repeat-x",
-              }}
-            />
-            <div
-              className="absolute bottom-0 left-16 right-16 h-16"
-              style={{
-                backgroundImage: `url(${edgeHorizontal})`,
-                backgroundSize: "auto 64px",
-                backgroundRepeat: "repeat-x",
-                transform: "rotate(180deg)",
-              }}
-            />
-            <div
-              className="absolute left-0 top-16 bottom-16 w-16"
-              style={{
-                backgroundImage: `url(${edgeVertical})`,
-                backgroundSize: "64px auto",
-                backgroundRepeat: "repeat-y",
-              }}
-            />
-            <div
-              className="absolute right-0 top-16 bottom-16 w-16"
-              style={{
-                backgroundImage: `url(${edgeVertical})`,
-                backgroundSize: "64px auto",
-                backgroundRepeat: "repeat-y",
-                transform: "scaleX(-1)",
-              }}
-            />
+          <div className="absolute inset-0" style={{ zIndex: 3 }}>
+            <div className="absolute top-0 left-0 w-16 h-16 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${corner})` }} />
+            <div className="absolute top-0 right-0 w-16 h-16 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${corner})`, transform: "scaleX(-1)" }} />
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${corner})`, transform: "scaleY(-1)" }} />
+            <div className="absolute bottom-0 right-0 w-16 h-16 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${corner})`, transform: "scale(-1, -1)" }} />
+            <div className="absolute top-0 left-16 right-16 h-16" style={{ backgroundImage: `url(${edgeHorizontal})`, backgroundSize: "auto 64px", backgroundRepeat: "repeat-x" }} />
+            <div className="absolute bottom-0 left-16 right-16 h-16" style={{ backgroundImage: `url(${edgeHorizontal})`, backgroundSize: "auto 64px", backgroundRepeat: "repeat-x", transform: "rotate(180deg)" }} />
+            <div className="absolute left-0 top-16 bottom-16 w-16" style={{ backgroundImage: `url(${edgeVertical})`, backgroundSize: "64px auto", backgroundRepeat: "repeat-y" }} />
+            <div className="absolute right-0 top-16 bottom-16 w-16" style={{ backgroundImage: `url(${edgeVertical})`, backgroundSize: "64px auto", backgroundRepeat: "repeat-y", transform: "scaleX(-1)" }} />
           </div>
         )}
       </div>
@@ -173,6 +161,15 @@ export function DynamicFrameLayout({
 }: DynamicFrameLayoutProps) {
   const [frames] = useState<Frame[]>(initialFrames)
   const [hovered, setHovered] = useState<{ row: number; col: number } | null>(null)
+
+  // Função para simular hover através do toque no Mobile
+  const handleInteraction = (row: number, col: number) => {
+    if (hovered?.row === row && hovered?.col === col) {
+      setHovered(null) // Fecha ao tocar novamente
+    } else {
+      setHovered({ row, col }) // Abre e dá play no primeiro toque
+    }
+  }
 
   const getRowSizes = () => {
     if (hovered === null) return "4fr 4fr 4fr"
@@ -203,6 +200,7 @@ export function DynamicFrameLayout({
         gridTemplateColumns: getColSizes(),
         gap: `${gapSize}px`,
         transition: "grid-template-rows 0.4s ease, grid-template-columns 0.4s ease",
+        touchAction: "pan-y" 
       }}
     >
       {frames.map((frame) => {
@@ -213,13 +211,15 @@ export function DynamicFrameLayout({
         return (
           <motion.div
             key={frame.id}
-            className="relative"
+            className="relative cursor-pointer"
             style={{
               transformOrigin,
               transition: "transform 0.4s ease",
+              zIndex: hovered?.row === row && hovered?.col === col ? 10 : 1
             }}
             onMouseEnter={() => setHovered({ row, col })}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => handleInteraction(row, col)}
           >
             <FrameComponent
               video={frame.video}
