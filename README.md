@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# 🌿 Casa Jardine - Landing Page Premium
+
+Este projeto é uma **Landing Page de alto padrão** desenvolvida para o espaço de eventos **Casa Jardine**, localizado em Vitória da Conquista - BA. O foco principal é a experiência do usuário (UX), utilizando animações fluidas, design responsivo e uma paleta de cores sofisticada baseada em tons de Verde Caqui e Bege.
+
+-----
+
+## 🚀 Tecnologias Utilizadas
+
+O projeto foi construído com o que há de mais moderno no ecossistema Web:
+
+  * **[Next.js](https://nextjs.org/)** - Framework React para performance e SEO otimizado.
+  * **[TypeScript](https://www.typescriptlang.org/)** - Tipagem estática para maior segurança no desenvolvimento.
+  * **[CSS Modules](https://github.com/css-modules/css-modules)** - Estilização isolada e modularizada.
+  * **[Framer Motion](https://www.framer.com/motion/)** - Orquestração de animações complexas e interativas.
+  * **[GSAP](https://greensock.com/gsap/)** - Utilizado especificamente para a galeria de imagens com efeitos de máscara.
+  * **[Lucide React](https://lucide.dev/)** & **[React Icons](https://react-icons.github.io/react-icons/)** - Conjunto de ícones leves e elegantes.
+
+-----
+
+## 📂 Estrutura de Pastas
+
+Baseado na arquitetura atual do projeto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+casa-jardine-lp/
+├── public/              # Ativos estáticos (imagens, logos, ícones)
+├── src/
+│   ├── ui/              # Componentes de interface pura (Botões, Inputs)
+│   ├── components/      # Seções e componentes lógicos
+│   │   ├── HeroSection/      # Seção principal com scroll suave
+│   │   ├── EventSection/     # Grid de eventos e Modal de Galeria
+│   │   ├── LocationSection/  # Mapa e informações de acesso
+│   │   ├── FooterSection/    # Rodapé com efeito de Glow
+│   │   ├── WhatsappFloat/    # Chat de atendimento personalizado
+│   │   └── ...
+│   └── styles/          # Estilos globais e variáveis de cores
+├── next.config.js       # Configurações do framework
+└── package.json         # Dependências do projeto
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-----
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Funcionalidades Principais
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  * **Navegação Smooth Scroll:** Sistema de scroll personalizado com offset para menus fixos.
+  * **Galeria Interativa (GSAP):** Galeria de fotos com efeito de transição em círculos e animações de entrada.
+  * **Modal Dinâmico:** Visualização detalhada de álbuns de eventos com foco na experiência mobile.
+  * **Atendimento Inteligente:** Botão flutuante do WhatsApp que simula um chat real com opções de mensagens rápidas personalizadas para o negócio.
+  * **Design Responsivo:** Adaptado para resoluções desde telas UltraWide até dispositivos móveis compactos.
 
-## Learn More
+-----
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Paleta de Cores (Brand Identity)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Cor | Hexadecimal | Uso |
+| :--- | :--- | :--- |
+| **Marrom Profundo** | `#2C1E12` | Cabeçalhos e botões principais |
+| **Verde Caqui** | `#4B5320` | Destaques, ícones e estados de hover |
+| **Dourado Suave** | `#D2B48C` | Detalhes decorativos e títulos secundários |
+| **Bege Claro** | `#FAF9F6` | Fundo principal (Background) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-----
 
-## Deploy on Vercel
+## 🛠️ Como rodar o projeto localmente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/casa-jardine-lp.git
+    ```
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+4.  **Acesse no navegador:**
+    [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-----
+
+## 📄 Licença
+
+Este projeto é de uso exclusivo para a **Casa Jardine**. Desenvolvido por **Gervásio Cardoso**.
+

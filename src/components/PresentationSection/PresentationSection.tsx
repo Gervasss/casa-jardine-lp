@@ -1,15 +1,14 @@
 "use client"
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; 
 import { ImageZoom } from "@/src/ui/ImageZoom";
 import VideoPlayer from "@/src/ui/video-player";
 import styles from './PresentationSection.module.css';
 import { IoChevronForward } from "react-icons/io5";
 
 const PresentationSection = () => {
-    // Variantes para efeito cascata nos textos
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -17,7 +16,7 @@ const PresentationSection = () => {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { y: 30, opacity: 0 },
         visible: {
             y: 0,
@@ -26,17 +25,20 @@ const PresentationSection = () => {
         },
     };
 
-    // Variantes para o badge de experiência
-    const badgeVariants = {
+    const badgeVariants: Variants = {
         hidden: { scale: 0.5, opacity: 0 },
         visible: {
             scale: 1,
             opacity: 1,
-            transition: { type: "spring", stiffness: 100, damping: 12, delay: 0.8 },
+            transition: { 
+                type: "spring", 
+                stiffness: 100, 
+                damping: 12, 
+                delay: 0.8 
+            },
         },
     };
 
-    // Função para abrir o WhatsApp (ajuste o número conforme necessário)
     const handleQuoteClick = () => {
         const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para meu evento na Casa Jardine.");
         window.open(`https://wa.me/5577999920367?text=${message}`, '_blank');
@@ -44,7 +46,6 @@ const PresentationSection = () => {
 
     return (
         <section className={styles['presentation-container']} id="present">
-            {/* PARTE SUPERIOR: MOSAICO E TEXTOS */}
             <motion.div
                 className={styles['presentation-wrapper']}
                 initial="hidden"
@@ -52,7 +53,6 @@ const PresentationSection = () => {
                 viewport={{ once: true, amount: 0.1 }}
                 variants={containerVariants}
             >
-                {/* Lado Esquerdo: Mosaico Bento Grid */}
                 <div className={styles['image-mosaic']}>
                     <div className={`${styles['mosaic-item']} ${styles['large']}`}>
                         <ImageZoom src="/IMG_1.jpg" alt="Salão" width={600} height={800} />
@@ -93,7 +93,6 @@ const PresentationSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Lado Direito: Conteúdo de Texto e Ação */}
                 <div className={styles['text-content']}>
                     <motion.span className={styles['upper-title']} variants={itemVariants}>
                         Bem-vindo à Experiência
@@ -140,7 +139,6 @@ const PresentationSection = () => {
                 </div>
             </motion.div>
 
-         
             <motion.div
                 className={styles['video-section']}
                 initial={{ opacity: 0, y: 50 }}
@@ -154,10 +152,7 @@ const PresentationSection = () => {
                 </div>
 
                 <div className={styles['video-container']}>
-                    <VideoPlayer
-                        src="/casa-jardine.mp4"
-
-                    />
+                    <VideoPlayer src="/casa-jardine.mp4" />
                 </div>
             </motion.div>
         </section>
