@@ -49,7 +49,7 @@ function HomePage() {
                 />
                 <meta
                     property="og:image"
-                    content="https://www.casajardine.com.br/banner-casa-jardine.jpg"
+                    content="https://www.casajardine.com.br/casaLogo1.jpg"
                 />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
@@ -69,7 +69,7 @@ function HomePage() {
                 />
                 <meta
                     name="twitter:image"
-                    content="https://www.casajardine.com.br/banner-casa-jardine.jpg"
+                    content="https://www.casajardine.com.br/casaLogo1.jpg"
                 />
 
                 {/* Favicon e Viewport */}
