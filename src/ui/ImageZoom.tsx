@@ -26,24 +26,26 @@ export function ImageZoom({
   children,
   ...props
 }: ImageZoomProps) {
+  const combinedZoomProps = {
+    ...zoomProps,
+    dialogClassName: styles['zoom-dialog'],
+    overlayClassName: styles['zoom-overlay'],
+    closeText: "Fechar",
+    zoomMargin: 20,
+    wrapElement: "span",
+    zoomImg: {
+      src: getImageSrc(props.src),
+      sizes: undefined,
+      className: cn(
+        styles['zoom-image-high-res'],
+        zoomInProps?.className
+      ),
+      ...zoomInProps,
+    },
+  } as any
+
   return (
-    <Zoom
-      classDialog={styles['zoom-dialog']}
-      classOverlay={styles['zoom-overlay']}
-      closeText="Fechar"
-      zoomMargin={20}
-      wrapElement="span"
-      {...zoomProps}
-      zoomImg={{
-        src: getImageSrc(props.src),
-        sizes: undefined,
-        className: cn(
-          styles['zoom-image-high-res'],
-          zoomInProps?.className
-        ),
-        ...zoomInProps,
-      }}
-    >
+    <Zoom {...combinedZoomProps}>
       {children ?? (
         <Image
           className={cn(styles['zoom-trigger-image'], className)}
