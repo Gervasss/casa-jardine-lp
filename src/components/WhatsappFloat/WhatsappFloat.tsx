@@ -51,7 +51,7 @@ export function WhatsAppFloat() {
   const sendWhatsAppMessage = (message: string) => {
     const encoded = encodeURIComponent(message);
     window.open(
-      `https://wa.me/55779XXXXXXXX?text=${encoded}`, // Adicione o número real aqui
+      `https://wa.me/5577999920367?text=${encoded}`, 
       "_blank"
     );
     setIsOpen(false);

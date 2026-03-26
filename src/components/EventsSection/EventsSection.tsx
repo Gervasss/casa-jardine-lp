@@ -96,52 +96,52 @@ const eventTypes = [
         ]
     },
     {
-        id: "Casamento",
-        title: "Casamento",
-        description: "Evento especial para casamento, trazendo uma atmosfera romântica e elegante para um dia inesquecível.",
-        image: "https://i.postimg.cc/Df5ZX4Wq/Whats-App-Image-2026-01-07-at-18-10-16.jpg",
+        id: "valeria",
+        title: "Aniversário Valéria - 50 anos",
+        description: "celebração vibrante para os 50 anos de Valéria, repleta de alegria e momentos inesquecíveis para toda a família.",
+        image: "https://i.postimg.cc/Y0tQ4CSL/Val-(329).jpg",
         gallery: [
-            { title: "Altar", url: "https://i.postimg.cc/Y0XCKTc5/Whats-App-Image-2026-01-07-at-18-10-13.jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/GtMmw60f/Whats-App-Image-2026-01-07-at-18-10-13-(1).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/Y0XCKTcJ/Whats-App-Image-2026-01-07-at-18-10-14.jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/L5y8KGdG/Whats-App-Image-2026-01-07-at-18-10-14-(1).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/yxf842qt/Whats-App-Image-2026-01-07-at-18-10-14-(2).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/br6wc4cP/Whats-App-Image-2026-01-07-at-18-10-15.jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/6qHpJFJX/Whats-App-Image-2026-01-07-at-18-10-15-(1).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/x8s1DBDS/Whats-App-Image-2026-01-07-at-18-10-15-(2).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/Df5ZX4Wq/Whats-App-Image-2026-01-07-at-18-10-16.jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/Df5ZX4Wq/Whats-App-Image-2026-01-07-at-18-10-16.jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/cJ8R2zjt/Val-(324).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/50dBV3dn/Val-(325).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/yd4mHP4L/Val-(326).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/85QRSHQK/Val-(327).jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/MT7yKQq9/Val-(328).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/Y0tQ4CSL/Val-(329).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/j2vPyYWM/Val-(330).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/prPK9LdB/Val-(331).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/zvpKTYLS/Val-(332).jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/NGx13mNG/Val-(333).jpg" },
 
 
 
         ]
     },
     {
-        id: "baile de mascara",
-        title: "Baile de Máscara - Domínio",
-        description: "Evento temático para um baile de máscara, trazendo uma atmosfera misteriosa e divertida para uma noite inesquecível.",
-        image: "https://i.postimg.cc/cLdGMXVm/Baile-(20).jpg",
+        id: "antonio",
+        title: "Aniversário Antonio - 1 ano",
+        description: "Celebração encantadora para o primeiro ano de vida da Antonio,",
+        image: "https://i.postimg.cc/Dw3n14TM/Whats-App-Image-2026-01-07-at-18-12-22-(1).jpg",
         gallery: [
-            { title: "Altar", url: "https://i.postimg.cc/Yq6wWJyk/Baile-(17).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/nhnfY06L/Baile-(18).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/BnJfcMdj/Baile-(19).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/26gfQmDW/Baile-(2).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/cLdGMXVm/Baile-(20).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/3x95L2Tg/Baile-(21).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/L8vKyjp0/Baile-(22).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/cJHqP6x2/Baile-(23).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/SKs0HjQs/Baile-(24).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/cJbqWZ6j/Baile-(25).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/hjkHJrLK/Baile-(26).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/L5jGj1DT/Baile-(27).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/J0jSjkxY/Baile-(28).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/2jWsssYB/Baile-(29).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/TwBXVG6g/Baile-(3).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/nVmyyyxK/Baile-(30).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/CM83330r/Baile-(31).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/vHdJb08t/Baile-(32).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/Qxr2hfxG/Baile-(33).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/g2z16rZZ/Baile-(34).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/X7CnZcTc/Whats-App-Image-2026-01-07-at-18-12-15.jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/WbksD6QS/Whats-App-Image-2026-01-07-at-18-12-16.jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/02w96dLf/Whats-App-Image-2026-01-07-at-18-12-16-(1).jpg" },
+            { title: "Cerimônia", url: "https://i.postimg.cc/4N9XKbrB/Whats-App-Image-2026-01-07-at-18-12-17.jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/pXFP9YgC/Whats-App-Image-2026-01-07-at-18-12-17-(1).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/x1VnLN2M/Whats-App-Image-2026-01-07-at-18-12-18.jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/vZwb5xsW/Whats-App-Image-2026-01-07-at-18-12-19.jpg" },
+            { title: "Cerimônia", url: "https://i.postimg.cc/Bnf42P0N/Whats-App-Image-2026-01-07-at-18-12-20.jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/nhfpq9JK/Whats-App-Image-2026-01-07-at-18-12-20-(1).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/wjYgDRpc/Whats-App-Image-2026-01-07-at-18-12-20-(2).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/fRQDYSNC/Whats-App-Image-2026-01-07-at-18-12-20-(3).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/2SNrnLDX/Whats-App-Image-2026-01-07-at-18-12-21.jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/0y1P7Ksc/Whats-App-Image-2026-01-07-at-18-12-21-(1).jpg" },
+            { title: "Cerimônia", url: "https://i.postimg.cc/8zgNLfSZ/Whats-App-Image-2026-01-07-at-18-12-21-(2).jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/jSYtynb9/Whats-App-Image-2026-01-07-at-18-12-22.jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/Dw3n14TM/Whats-App-Image-2026-01-07-at-18-12-22-(1).jpg" },
+            { title: "Brinde", url: "https://i.postimg.cc/mgWB71sn/Whats-App-Image-2026-01-07-at-18-12-22-(2).jpg" },
+            { title: "Cerimônia", url: "https://i.postimg.cc/dVcwGZYz/Whats-App-Image-2026-01-07-at-18-12-23.jpg" },
+            { title: "Altar", url: "https://i.postimg.cc/jSYtynbm/Whats-App-Image-2026-01-07-at-18-12-23-(1).jpg" },
+            { title: "Jardim", url: "https://i.postimg.cc/131sDVSx/Whats-App-Image-2026-01-07-at-18-12-23-(2).jpg" },
 
         ]
     },
@@ -269,7 +269,7 @@ export default function EventsSection() {
                             className={styles["ctaButton"]}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.98 }}
-                            onClick={() => window.open('https://wa.me/SEU_NUMERO', '_blank')}
+                            onClick={() => window.open('https://wa.me/5577999920367', '_blank')}
                         >
                             <span>Solicitar Orçamento Exclusivo</span>
                            
