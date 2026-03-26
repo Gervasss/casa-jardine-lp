@@ -12,7 +12,7 @@ const menuItems = [
   { 
     id: 'hero',
     title: 'Início', 
-    icon: <Image src="/casaLogo.jpg" alt="Logo" width={44} height={44} className={styles['nav-logo']} />, 
+    icon: <Image src="/casaLogo1.jpg" alt="Logo" width={44} height={44} className={styles['nav-logo']} />, 
     color1: '#4B5320', 
     color2: '#6B8E23'  
   },
