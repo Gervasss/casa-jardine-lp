@@ -1,7 +1,9 @@
 
+import ContactSection from "@/src/components/ContactSection/ContactSection";
 import EventsSection from "@/src/components/EventsSection/EventsSection";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import InstagramSection from "@/src/components/InstagramSection/InstagramSection";
+import LocationSection from "@/src/components/LocalSection/LocalSection";
 import PresentationSection from "@/src/components/PresentationSection/PresentationSection";
 import ProfileSection from "@/src/components/ProfileSection/ProfileSection";
 import VideoShowcaseSection from "@/src/components/VideoShowcaseSection/VideoShowcaseSection";
@@ -145,6 +147,9 @@ function HomePage() {
               <EventsSection/>
               <InstagramSection/>
               <VideoShowcaseSection/>
+              <ContactSection/>
+              <LocationSection/>
+              
 
               
             </main>

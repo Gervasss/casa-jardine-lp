@@ -13,8 +13,8 @@
   --icon: none;
 
   /* Paleta fixa pedida */
-  --color-light: #b8b8b8 ;
-  --color-dark: rgba(0, 0, 0, 0.6);
+  --color-light: #D2B48C;
+  --color-dark: #2C1E12;
 
 
   /* Sem gradientes/efeitos */
@@ -238,7 +238,7 @@ box-shadow: var(--color-dark)
   justify-content: space-between;
 
   /* fundo discreto e translúcido (navy) */
-  background: rgba(0, 0, 0, 0.6);
+  background:rgba(44, 30, 18, 0.75);
   backdrop-filter: none;
   border: 1px solid rgba(211, 211, 211, 0.15);
   border-radius: 15px;
@@ -280,13 +280,13 @@ box-shadow: var(--color-dark)
 .pc-handle {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(211, 211, 211, 0.8);
+  color: #eebe7e;
   line-height: 1;
 }
 
 .pc-status {
   font-size: 14px;
-  color: rgba(211, 211, 211, 0.8);
+  color: #eebe7e;
   line-height: 1;
 }
 

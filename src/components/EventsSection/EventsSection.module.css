@@ -55,9 +55,11 @@
 
 
 .description {
-  color: #ffffff;
-  font-size: 1.1rem;
-  margin-top: 20px;
+  margin: 20px auto 0;
+    color: #ffffff;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    max-width: 650px;
 }
 
 /* GRID DE CARDS */
@@ -234,7 +236,6 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    /* Linha divisória em caqui bem clarinho */
     border-top: 1px border-double rgba(195, 176, 145, 0.3);
     background-color: transparent;
 }
@@ -248,7 +249,6 @@
 
 .ctaText {
     font-size: 1.1rem;
-    /* Tom Caqui acinzentado para o corpo do texto */
     color: #f7f7f7; 
     margin-bottom: 40px;
     line-height: 1.8;
@@ -257,12 +257,11 @@
 }
 
 .ctaText strong {
-    /* Tom Caqui Escuro/Terra para o destaque */
     color: #d4bf97; 
     display: block;
     margin-top: 12px;
     font-size: 1.6rem;
-    font-family: serif; /* Ou a fonte elegante do seu site */
+    font-family: serif; 
     font-style: italic;
     letter-spacing: 0.02em;
 }
@@ -270,10 +269,9 @@
 .ctaButton {
     position: relative;
     padding: 20px 50px;
-    /* Fundo Caqui Médio */
     background: #c3b091; 
-    color: #fdfcf0; /* O bege claro de fundo */
-    border-radius: 0px; /* Quadrado ou levemente arredondado é mais chique */
+    color: #fdfcf0; 
+     border-radius: 15px;
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -304,7 +302,7 @@
     transform: translateX(8px);
 }
 
-/* Efeito de preenchimento lateral no hover */
+
 .ctaButton::before {
     content: '';
     position: absolute;
@@ -326,6 +324,14 @@
     position: relative;
     z-index: 1;
 }
+
+/* Ajustes para Celulares Pequenos (até 374px) */
+@media (max-width: 374px) {
+ .eventCard{
+  width: 94%;
+ }
+}
+
 
 @media (max-width: 768px) {
     .ctaWrapper {

@@ -151,7 +151,7 @@ export default function EventsSection() {
     const [activeGallery, setActiveGallery] = useState<typeof eventTypes[0] | null>(null);
 
     return (
-        <section className={styles["sectionContainer"]}>
+        <section className={styles["sectionContainer"]} id="events">
             <div className={styles["header"]}>
                 <motion.span
                     className={styles["upperTitle"]}
@@ -251,7 +251,7 @@ export default function EventsSection() {
                         </div>
                     </motion.div>
                 )}
-                {/* CTA FINAL */}
+    
                 <motion.div
                     className={styles["ctaWrapper"]}
                     initial={{ opacity: 0, y: 20 }}

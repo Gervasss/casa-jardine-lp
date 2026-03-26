@@ -34,7 +34,7 @@ const ProfileSection = () => {
   ];
 
   return (
-    <section className={styles['founders-container']}>
+    <section className={styles['founders-container']} id="profile">
       <motion.div 
         className={styles['founders-header']}
         initial={{ opacity: 0, y: 20 }}

@@ -19,8 +19,6 @@ export default function InstagramSection() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // --- LÓGICA DE SIMULAÇÃO (MOCK) ---
-        // Quando tiver a URL do Behold, apague o 'mockData' e use o fetch
         const mockData: Post[] = [
             {
                 id: "1", mediaUrl: "/inst 1.png", permalink: "https://www.instagram.com/p/DVjA9zGj_lH/?img_index=1",
@@ -72,7 +70,7 @@ export default function InstagramSection() {
     }
 
     return (
-        <section className={styles["container"]}>
+        <section className={styles["container"]} id="instagram">
             <div className={styles["content"]}>
                 <header className={styles["header"]}>
                     <span className={styles["handle"]}>@casajardinevca</span>

@@ -1,36 +1,46 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image'; 
-import { 
-  IoHomeOutline, 
-  IoVideocamOutline, 
-  IoCameraOutline, 
-  IoShareSocialOutline, 
-  IoHeartOutline 
-} from 'react-icons/io5';
 import styles from './GradientMenu.module.css'; 
+import { IoMdPin } from 'react-icons/io';
+import { MdEvent } from 'react-icons/md';
+import { FaInstagram } from 'react-icons/fa';
+import { CiPhone } from 'react-icons/ci';
 
 const menuItems = [
   { 
-    title: 'Casa Jardine', 
+    id: 'hero',
+    title: 'Início', 
     icon: <Image src="/casaLogo.jpg" alt="Logo" width={44} height={44} className={styles['nav-logo']} />, 
     color1: '#4B5320', 
     color2: '#6B8E23'  
   },
-  { title: 'Home', icon: <IoHomeOutline />, color1: '#4B5320', color2: '#6B8E23' },
-  { title: 'Video', icon: <IoVideocamOutline />, color1: '#4B5320', color2: '#6B8E23' },
-  { title: 'Photo', icon: <IoCameraOutline />, color1: '#4B5320', color2: '#6B8E23' },
-  { title: 'Tym', icon: <IoHeartOutline />, color1: '#4B5320', color2: '#6B8E23' }
+  { id: 'loc', title: 'Localização', icon: <IoMdPin />, color1: '#4B5320', color2: '#6B8E23' },
+  { id: 'events', title: 'Eventos', icon: <MdEvent />, color1: '#4B5320', color2: '#6B8E23' },
+  { id: 'instagram', title: 'Instagram', icon: <FaInstagram />, color1: '#4B5320', color2: '#6B8E23' },
+  { id: 'contact', title: 'Contato', icon: <CiPhone />, color1: '#4B5320', color2: '#6B8E23' }
 ];
 
 export default function GradientMenu() {
+  
+  
+  const scrollToId = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className={styles['menu-container']}>
+    <nav className={styles['menu-container']}>
       <ul className={styles['menu-list']}>
-        {menuItems.map(({ title, icon, color1, color2 }, idx) => (
+        {menuItems.map(({ id, title, icon, color1, color2 }, idx) => (
           <li
             key={idx}
             className={styles['menu-item']}
             style={{ '--clr1': color1, '--clr2': color2 } as React.CSSProperties}
+            onClick={() => scrollToId(id)} // Ativa o clique
           >
             <span className={styles['menu-bg']}></span>
             <span className={styles['menu-glow']}></span>
@@ -43,6 +53,6 @@ export default function GradientMenu() {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }

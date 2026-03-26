@@ -19,7 +19,7 @@ const videoFrames = [
 
 export default function VideoShowcaseSection() {
   return (
-    <section className={styles["section-container"]}>
+    <section className={styles["section-container"]} id="showcase">
       
       {/* Cabeçalho de Texto */}
       <motion.header 

@@ -295,7 +295,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                   </div>
                   <div className={styles["pc-user-text"]}>
                     <div className={styles["pc-handle"]}>@{handle}</div>
-                    <div className={styles["pc-status"]}>{status}</div>
+                    
                   </div>
                 </div>
 

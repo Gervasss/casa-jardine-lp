@@ -39,11 +39,11 @@ const PresentationSection = () => {
     // Função para abrir o WhatsApp (ajuste o número conforme necessário)
     const handleQuoteClick = () => {
         const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para meu evento na Casa Jardine.");
-        window.open(`https://wa.me/5577999999999?text=${message}`, '_blank');
+        window.open(`https://wa.me/5577999920367?text=${message}`, '_blank');
     };
 
     return (
-        <section className={styles['presentation-container']}>
+        <section className={styles['presentation-container']} id="present">
             {/* PARTE SUPERIOR: MOSAICO E TEXTOS */}
             <motion.div
                 className={styles['presentation-wrapper']}
@@ -140,7 +140,7 @@ const PresentationSection = () => {
                 </div>
             </motion.div>
 
-            {/* SEÇÃO INFERIOR: VÍDEO TOUR */}
+         
             <motion.div
                 className={styles['video-section']}
                 initial={{ opacity: 0, y: 50 }}
