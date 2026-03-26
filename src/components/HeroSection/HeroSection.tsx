@@ -31,7 +31,7 @@ const HeroSection = () => {
 
     
         <button className={styles['hero-cta']} onClick={() => scrollToId('present')}>
-          Conhecer Espaço
+          Conhecer 
         </button>
       </div>
       <div className={styles['hero-scroll-indicator']}>

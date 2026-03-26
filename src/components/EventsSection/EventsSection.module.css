@@ -1,11 +1,7 @@
+/* --- CONTAINER PRINCIPAL DA SEÇÃO --- */
 .sectionContainer {
   padding: 120px 20px;
-  background-color: #4B5320; /* Verde Caqui Base */
-  /* Camadas: 1. Brilho nos cantos, 2. Textura de papel sutil */
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(210, 180, 140, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(210, 180, 140, 0.15) 0%, transparent 40%),
-    url("https://www.transparenttextures.com/patterns/natural-paper.png"); 
+  background-color: #FAF9F6;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +9,6 @@
   overflow: hidden;
 }
 
-/* Moldura decorativa interna */
 .sectionContainer::after {
   content: '';
   position: absolute;
@@ -24,11 +19,13 @@
   z-index: 1;
 }
 
+/* --- CABEÇALHO --- */
 .header {
   text-align: center;
   margin-bottom: 80px;
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .upperTitle {
@@ -43,8 +40,8 @@
 
 .mainTitle {
   font-family: serif;
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  color: #FAF9F6;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: rgba(44, 30, 18, 0.9);
   line-height: 1.1;
 }
 
@@ -53,24 +50,24 @@
   color: #D2B48C;
 }
 
-
 .description {
   margin: 20px auto 0;
-    color: #ffffff;
-    line-height: 1.6;
-    font-size: 1.1rem;
-    max-width: 650px;
+  color: #666;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  max-width: 650px;
 }
 
-/* GRID DE CARDS */
+/* --- GRID DE CARDS (3 POR LINHA NO DESKTOP) --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr); 
   gap: 40px;
   max-width: 1300px;
   width: 100%;
   position: relative;
   z-index: 2;
+  margin: 0 auto;
 }
 
 .eventCard {
@@ -78,9 +75,15 @@
   border-radius: 30px;
   padding: 12px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(210, 180, 140, 0.3);
   cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.eventCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(44, 30, 18, 0.2);
 }
 
 .cardInner {
@@ -92,7 +95,7 @@
   flex-direction: column;
 }
 
-/* IMAGEM E HOVER */
+/* --- IMAGEM E HOVER --- */
 .imageWrapper {
   position: relative;
   height: 300px;
@@ -110,20 +113,6 @@
   transform: scale(1.1);
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(44, 30, 18, 0.4), transparent);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.eventCard:hover .imageOverlay {
-  opacity: 1;
-}
-
-
-/* Overlay de Hover mais refinado */
 .viewMoreBtn {
   position: absolute;
   bottom: 20px;
@@ -137,8 +126,6 @@
   border-radius: 50px;
   opacity: 0;
   transition: all 0.4s ease;
-  cursor: pointer;
-  white-space: nowrap;
   font-size: 0.7rem;
   letter-spacing: 2px;
   font-weight: 700;
@@ -159,47 +146,37 @@
   font-family: serif;
   font-size: 1.8rem;
   color: #2C1E12;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-.cardContent p {
-  color: #666;
-  line-height: 1.7;
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.cardFooterDecoration {
-  color: #D2B48C;
-  font-size: 1.5rem;
-}
-
-/* MODAL OVERLAY */
+/* --- MODAL DE GALERIA --- */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(29, 29, 28, 0.384);
+  background-color: rgba(20, 20, 19, 0.95);
   backdrop-filter: blur(15px);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .closeBtn {
-  position: absolute;
-  top: 40px;
-  right: 40px;
+  position: fixed;
+  top: 30px;
+  right: 30px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+  color: #D2B48C;
   padding: 12px 24px;
   border-radius: 100px;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  z-index: 10001;
   transition: all 0.3s;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -217,145 +194,122 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .galleryTitle {
   font-family: serif;
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   color: #D2B48C;
   margin-bottom: 30px;
+  text-align: center;
 }
 
-.galleryContainer {
-  width: 100%;
-  position: relative;
-}
+/* --- CTA SECTION (RESTORED) --- */
 .ctaWrapper {
-    margin-top: 100px;
-    padding: 80px 20px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    border-top: 1px border-double rgba(195, 176, 145, 0.3);
-    background-color: transparent;
+  margin-top: 80px;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .ctaContent {
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ctaText {
-    font-size: 1.1rem;
-    color: #f7f7f7; 
-    margin-bottom: 40px;
-    line-height: 1.8;
-    letter-spacing: 0.05em;
-    font-weight: 300;
+  font-size: 1.1rem;
+  color: #666; 
+  margin-bottom: 40px;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  font-weight: 300;
 }
 
 .ctaText strong {
-    color: #d4bf97; 
-    display: block;
-    margin-top: 12px;
-    font-size: 1.6rem;
-    font-family: serif; 
-    font-style: italic;
-    letter-spacing: 0.02em;
+  color: #D2B48C; 
+  display: block;
+  margin-top: 12px;
+  font-size: 1.6rem;
+  font-family: serif; 
+  font-style: italic;
 }
 
 .ctaButton {
-    position: relative;
-    padding: 20px 50px;
-    background: #c3b091; 
-    color: #fdfcf0; 
-     border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #c3b091;
-    box-shadow: 0 10px 30px rgba(195, 176, 145, 0.2);
+  position: relative;
+  padding: 20px 50px;
+  background: #c3b091;
+  color: #fdfcf0;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: 1px solid #c3b091;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .ctaButton:hover {
-    background: transparent;
-    color: #c3b091;
-    box-shadow: 0 15px 45px rgba(195, 176, 145, 0.1);
-    border: 1px solid #c3b091;
+  background: transparent;
+  color: #c3b091;
 }
-
-.ctaIcon {
-    font-size: 1.2rem;
-    transition: transform 0.4s ease;
-}
-
-.ctaButton:hover .ctaIcon {
-    transform: translateX(8px);
-}
-
 
 .ctaButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background: #fdfcf0;
-    transition: width 0.4s ease;
-    z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 0%; height: 100%;
+  background: #fdfcf0;
+  transition: width 0.4s ease;
+  z-index: -1;
 }
 
-.ctaButton:hover::before {
-    width: 100%;
-}
+.ctaButton:hover::before { width: 100%; }
 
-/* Ajuste para o texto não sumir com o fundo novo no hover */
-.ctaButton span, .ctaButton .ctaIcon {
-    position: relative;
-    z-index: 1;
-}
+.ctaButton span { position: relative; z-index: 1; }
 
-/* Ajustes para Celulares Pequenos (até 374px) */
-@media (max-width: 374px) {
- .eventCard{
-  width: 94%;
- }
-}
+/* --- MEDIA QUERIES --- */
 
-
-@media (max-width: 768px) {
-    .ctaWrapper {
-        margin-top: 60px;
-        padding: 60px 24px;
-    }
-    .ctaText { font-size: 0.95rem; }
-    .ctaText strong { font-size: 1.3rem; }
-    .ctaButton { 
-        width: 100%; 
-        padding: 18px 20px;
-        justify-content: center; 
-    }
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-  .sectionContainer::after { inset: 20px; border-radius: 25px; }
-  .grid { gap: 30px; }
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 }
 
 @media (max-width: 768px) {
   .sectionContainer { padding: 80px 15px; }
-  .mainTitle { font-size: 2.2rem; }
-  .modalOverlay { padding: 20px; }
-  .closeBtn { top: 20px; right: 20px; padding: 8px 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .header { margin-bottom: 50px; }
+  
+  .modalOverlay {
+    padding: 10px;
+    align-items: flex-start;
+  }
+  
+  .galleryWrapper { margin-top: 80px; }
+  .closeBtn { top: 15px; right: 15px; padding: 8px 16px; font-size: 0.7rem; }
+  .imageWrapper { height: 240px; }
+  
+  .ctaButton {
+    width: 100%;
+    padding: 18px 20px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle { font-size: 1.8rem; }
+  .closeBtn span { display: none; }
+  .sectionContainer::after { display: none; }
 }

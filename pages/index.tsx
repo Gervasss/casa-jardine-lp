@@ -1,12 +1,14 @@
 
 import ContactSection from "@/src/components/ContactSection/ContactSection";
 import EventsSection from "@/src/components/EventsSection/EventsSection";
+import FooterSection from "@/src/components/FooterSection/FooterSection";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import InstagramSection from "@/src/components/InstagramSection/InstagramSection";
 import LocationSection from "@/src/components/LocalSection/LocalSection";
 import PresentationSection from "@/src/components/PresentationSection/PresentationSection";
 import ProfileSection from "@/src/components/ProfileSection/ProfileSection";
 import VideoShowcaseSection from "@/src/components/VideoShowcaseSection/VideoShowcaseSection";
+import WhatsAppFloat from "@/src/components/WhatsappFloat/WhatsappFloat";
 import Head from "next/head";
 import Script from "next/script";
 
@@ -86,27 +88,27 @@ function HomePage() {
                         "name": "Casa Jardine",
                         "description": "Espaço premium para casamentos, festas e eventos corporativos em Vitória da Conquista.",
                         "url": "https://www.casajardine.com.br",
-                        "telephone": "+55",
+                        "telephone": "+5577999920367",
                         "priceRange": "R$$",
                         "address": {
                             "@type": "PostalAddress",
-                            "streetAddress": "Inserir Endereço Real Aqui",
+                            "streetAddress": "Avenida Jesiel Norberto, 367",
                             "addressLocality": "Vitória da Conquista",
                             "addressRegion": "BA",
                             "addressCountry": "BR"
                         },
                         "geo": {
                             "@type": "GeoCoordinates",
-                            "latitude": "-14.8661",
-                            "longitude": "-40.8394"
+                            "latitude": "-14.8576402",
+                            "longitude": "-40.8385317"
                         },
                         "openingHoursSpecification": {
                             "@type": "OpeningHoursSpecification",
                             "dayOfWeek": [
                                 "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
                             ],
-                            "opens": "08:00",
-                            "closes": "18:00"
+                            "opens": "09:00",
+                            "closes": "17:00"
                         },
                         "knowsAbout": [
                             "Organização de Casamentos",
@@ -149,6 +151,8 @@ function HomePage() {
               <VideoShowcaseSection/>
               <ContactSection/>
               <LocationSection/>
+              <FooterSection/>
+              <WhatsAppFloat/>
               
 
               
