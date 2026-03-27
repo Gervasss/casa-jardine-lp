@@ -254,6 +254,17 @@
   }
 }
 
+@media (min-width: 1366px) {
+  .text-content {
+    margin-top: -180px;
+    padding-left: 20px;
+  }
+
+  .experience-badge{
+    margin-left: 20px;
+  }
+}
+
 @media (min-width: 1920px) {
   .text-content {
     margin-top: -180px;
