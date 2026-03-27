@@ -35,7 +35,7 @@ export default function LocationSection() {
               </div>
               <div>
                 <strong>Visitas com Agendamento</strong>
-                <p>Segunda a Sábado, 09h às 17h</p>
+                <p>Segunda a Sexta, 08h às 17h</p>
               </div>
             </div>
           </div>

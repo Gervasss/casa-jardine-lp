@@ -196,7 +196,7 @@ export function WhatsAppFloat() {
               </div>
 
               <div className={styles.footer}>
-                Atendimento exclusivo para eventos • Vitória da Conquista - BA
+                WhatsApp • Seg a Sex, 10h às 16:30 • Vitória da Conquista - BA
               </div>
             </motion.div>
           </motion.div>
