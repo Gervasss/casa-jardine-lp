@@ -15,20 +15,21 @@ const ProfileSection = () => {
   ];
 
   const founders = [
-    {
-      name: "Daisy Cardoso",
-      handle: "daisycardoso.pessoasenegocios",
-      title: "Estrategista de Experiências Corporativas",
-      status: "Transformando eventos em resultados memoráveis",
-      avatarUrl: "/daisy.png", 
-    
-    },
+   
     {
       name: "Karine Flores",
       handle: "karineoflores",
       title: "Designer de Interiores e Eventos",
       status: "Transformando espaços em cenários inesquecíveis",
       avatarUrl: "/karine.png",
+    
+    },
+     {
+      name: "Daisy Cardoso",
+      handle: "daisycardoso.pessoasenegocios",
+      title: "Estrategista de Experiências Corporativas",
+      status: "Transformando eventos em resultados memoráveis",
+      avatarUrl: "/daisy.png", 
     
     }
   ];
