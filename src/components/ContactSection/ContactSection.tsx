@@ -22,11 +22,11 @@ type FormState = {
 const WHATSAPP_NUMBER_E164 = '5577999920367';
 
 export default function ContactSection() {
-    const sectionRef = useRef(null);
-    const titleRef = useRef(null);
-    const subtitleRef = useRef(null);
-    const handleRef = useRef(null);
-    const formRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const titleRef = useRef<HTMLHeadingElement | null>(null);
+    const subtitleRef = useRef<HTMLParagraphElement | null>(null);
+    const handleRef = useRef<HTMLSpanElement | null>(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
     const infoRowsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     const [state, setState] = React.useState<FormState>({
@@ -192,7 +192,12 @@ export default function ContactSection() {
 
                     <div className={styles.side}>
                         <h3 className={styles.sideTitle}>Canais de Atendimento</h3>
-                        <div ref={(el) => (infoRowsRef.current[0] = el)} className={styles.infoRow}>
+                        <div
+                            ref={(el) => {
+                                infoRowsRef.current[0] = el;
+                            }}
+                            className={styles.infoRow}
+                        >
                             <a className={styles.iconBubble} href={whatsappDirect} target="_blank" rel="noreferrer">
                                 <FaWhatsapp size={24} />
                             </a>
@@ -201,7 +206,12 @@ export default function ContactSection() {
                                 <p className={styles.infoStrong}>(77) 99992-0367</p>
                             </div>
                         </div>
-                        <div ref={(el) => (infoRowsRef.current[1] = el)} className={styles.infoRow}>
+                        <div
+                            ref={(el) => {
+                                infoRowsRef.current[1] = el;
+                            }}
+                            className={styles.infoRow}
+                        >
                             <a className={styles.iconBubble} href="mailto:contato@casajardine.com.br">
                                 <Mail size={24} />
                             </a>
@@ -210,7 +220,12 @@ export default function ContactSection() {
                                 <p className={styles.infoStrong}>contato@casajardine.com.br</p>
                             </div>
                         </div>
-                        <div ref={(el) => (infoRowsRef.current[2] = el)} className={styles.socialRow}>
+                        <div
+                            ref={(el) => {
+                                infoRowsRef.current[2] = el;
+                            }}
+                            className={styles.socialRow}
+                        >
                             <a className={styles.social} href="https://www.instagram.com/casajardinevca/" target="_blank" rel="noreferrer">
                                 <BsInstagram size={22} />
                             </a>
