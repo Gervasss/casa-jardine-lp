@@ -22,10 +22,10 @@ export default function InstagramSection() {
     const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState(true);
     
-    const sectionRef = useRef(null);
-    const titleRef = useRef(null);
-    const subtitleRef = useRef(null);
-    const handleRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const titleRef = useRef<HTMLHeadingElement | null>(null);
+    const subtitleRef = useRef<HTMLParagraphElement | null>(null);
+    const handleRef = useRef<HTMLSpanElement | null>(null);
     const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
     useLayoutEffect(() => {
@@ -124,7 +124,9 @@ export default function InstagramSection() {
                     {posts.map((post, idx) => (
                         <a
                             key={post.id}
-                            ref={(el) => (cardsRef.current[idx] = el)}
+                            ref={(el) => {
+                                cardsRef.current[idx] = el;
+                            }}
                             href={post.permalink}
                             target="_blank"
                             className={styles["post-card"]}
