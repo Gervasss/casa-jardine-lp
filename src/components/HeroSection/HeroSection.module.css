@@ -73,6 +73,7 @@
 
 @media (min-width: 768px) {
   .hero-title { font-size: 4.5rem; }
+  
 }
 
 .hero-title-italic {
@@ -149,6 +150,8 @@
   font-weight: 500;
 }
 
+
+
 /* Animação que faz a bolinha descer e sumir */
 @keyframes scrollAnim {
   0% {
@@ -170,4 +173,148 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* TELA DE TRANSIÇÃO (OVERLAY PREMIUM) */
+
+:root {
+  --gold-primary: #e9debe;
+  --bg-elevated: #1b241b; 
+  --bg-deep: #0a0a0a;
+  
+  --overlay-dark: rgba(13, 17, 13, 0.8);
+  --transition-speed: 2s;
+}
+
+
+.transition-loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradiente corrigido com as variáveis */
+  background: radial-gradient(circle at center, var(--bg-elevated) 0%, var(--bg-deep) 100%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateY(100%);
+}
+
+/* CONTEÚDO DENTRO DO LOADER */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* O TEXTO QUE PULSA */
+.loader-content h2 {
+  color: var(--gold-primary); 
+  font-family: 'Playfair Display', serif; 
+  font-style: italic;
+  font-size: 2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: premiumPulse var(--transition-speed) ease-in-out infinite;
+}
+
+/* LINHA ESTILOSA ABAIXO DO TEXTO */
+.loader-line {
+  width: 0;
+  height: 1px;
+  /* Gradiente da linha usando o dourado centralizado */
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  animation: lineExpand 1.5s ease-in-out forwards;
+}
+
+/* REFINAMENTO DO OVERLAY DO HERO */
+.hero-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    var(--overlay-dark) 50%,
+    var(--bg-deep) 100%
+  );
+  backdrop-filter: blur(1px);
+  z-index: 2;
+}
+
+/* ANIMAÇÕES */
+@keyframes premiumPulse {
+  0% { 
+    opacity: 0.2; 
+    transform: scale(0.98); 
+    filter: blur(2px);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1); 
+    filter: blur(0px);
+    text-shadow: 0 0 15px rgba(233, 222, 190, 0.3);
+  }
+  100% { 
+    opacity: 0.2; 
+    transform: scale(0.98); 
+    filter: blur(2px);
+  }
+}
+
+@keyframes lineExpand {
+  0% { width: 0; opacity: 0; }
+  100% { width: 150px; opacity: 1; }
+}
+
+
+/* A imagem da logo com a mesma pulsação premium */
+.loader-logo {
+  width: 180px; 
+  height: auto;
+  opacity: 0;
+  filter: brightness(0) invert(1); 
+  animation: premiumPulse 2s ease-in-out infinite;
+}
+
+/* Texto sutil abaixo da logo */
+.loader-text {
+  color: var(--gold-primary);
+  font-family: serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards 0.5s; 
+}
+
+/* Reutilizando sua animação de pulsação para a imagem */
+@keyframes premiumPulse {
+  0% { 
+    opacity: 0.3; 
+    transform: scale(0.97); 
+    filter: blur(1px) brightness(0.8);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1); 
+    filter: blur(0px) brightness(1);
+  }
+  100% { 
+    opacity: 0.3; 
+    transform: scale(0.97); 
+    filter: blur(1px) brightness(0.8);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 0.8; }
 }

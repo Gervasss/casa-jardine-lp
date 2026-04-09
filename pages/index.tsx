@@ -1,4 +1,5 @@
 
+import AllSections from "@/src/components/AllSections/AllSections";
 import ContactSection from "@/src/components/ContactSection/ContactSection";
 import EventsSection from "@/src/components/EventsSection/EventsSection";
 import FooterSection from "@/src/components/FooterSection/FooterSection";
@@ -143,16 +144,7 @@ function HomePage() {
 
             {/* Conteúdo da página inicial  */}
             <main>
-              <HeroSection/>
-              <PresentationSection/>
-              <ProfileSection/>
-              <EventsSection/>
-              <InstagramSection/>
-              <VideoShowcaseSection/>
-              <ContactSection/>
-              <LocationSection/>
-              <FooterSection/>
-              <WhatsAppFloat/>
+              <AllSections />
               
 
               

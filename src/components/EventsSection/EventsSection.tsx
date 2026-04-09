@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { SplitText } from "gsap/SplitText"; // Certifique-se de que o arquivo SplitText está no seu diretório de plugins
 import { ImageGallery } from "@/src/ui/carousel-circular-image-gallery";
-import { IoCloseOutline, IoArrowForwardOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 import styles from "./EventsSection.module.css";
+
+// Registro do plugin apenas no cliente
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+}
 
 const eventTypes = [
     {
@@ -30,8 +38,6 @@ const eventTypes = [
             { title: "Jardim", url: "https://i.postimg.cc/dV6JZzNW/099A6564.jpg" },
             { title: "Brinde", url: "https://i.postimg.cc/sgm3GtHN/099A6608.jpg" },
             { title: "Cerimônia", url: "https://i.postimg.cc/NjDQ2WCV/099A6616.jpg" },
-
-
         ]
     },
     {
@@ -56,15 +62,12 @@ const eventTypes = [
             { title: "Jardim", url: "https://i.postimg.cc/rFW1T9ZM/EV-(32).jpg" },
             { title: "Brinde", url: "https://i.postimg.cc/xTHvQPpf/EV-(33).jpg" },
             { title: "Cerimônia", url: "https://i.postimg.cc/fySbxBSS/EV-(5).jpg" },
-
-
         ]
     },
-
     {
         id: "ABC Sacramentinas",
         title: "ABC Sacramentinas",
-        description: "Evento corporativo para a formatura do ABC da Sacramentinas, proporcionando um ambiente elegante e inspirador para networking, palestras e celebrações empresariais.",
+        description: "Evento corporativo para a formatura do ABC da Sacramentinas, proporcionando um ambiente elegante e inspirador para networking.",
         image: "https://i.postimg.cc/jjv69dgG/Extras-(157).jpg",
         gallery: [
             { title: "Altar", url: "https://i.postimg.cc/fT0KLsL1/Extras-(150).jpg" },
@@ -75,8 +78,6 @@ const eventTypes = [
             { title: "Cerimônia", url: "https://i.postimg.cc/ZqJFVycY/Extras-(155).jpg" },
             { title: "Altar", url: "https://i.postimg.cc/cJT7j49n/Extras-(156).jpg" },
             { title: "Jardim", url: "https://i.postimg.cc/jjv69dgG/Extras-(157).jpg" },
-
-
         ]
     },
     {
@@ -90,9 +91,6 @@ const eventTypes = [
             { title: "Altar", url: "https://i.postimg.cc/QxbpVMsN/Whats-App-Image-2026-03-02-at-09-38-17-(2).jpg" },
             { title: "Jardim", url: "https://i.postimg.cc/wTVh3BH7/Whats-App-Image-2026-03-02-at-09-38-17-(3).jpg" },
             { title: "Brinde", url: "https://i.postimg.cc/WbnMt4VW/Whats-App-Image-2026-03-02-at-09-38-16.jpg" },
-
-
-
         ]
     },
     {
@@ -111,172 +109,227 @@ const eventTypes = [
             { title: "Altar", url: "https://i.postimg.cc/prPK9LdB/Val-(331).jpg" },
             { title: "Jardim", url: "https://i.postimg.cc/zvpKTYLS/Val-(332).jpg" },
             { title: "Brinde", url: "https://i.postimg.cc/NGx13mNG/Val-(333).jpg" },
-
-
-
         ]
     },
     {
         id: "antonio",
         title: "Aniversário Antonio - 1 ano",
-        description: "Celebração encantadora para o primeiro ano de vida da Antonio,",
+        description: "Celebração encantadora para o primeiro ano de vida do Antonio, com cenários lúdicos e inesquecíveis.",
         image: "https://i.postimg.cc/Dw3n14TM/Whats-App-Image-2026-01-07-at-18-12-22-(1).jpg",
         gallery: [
-            { title: "Altar", url: "https://i.postimg.cc/X7CnZcTc/Whats-App-Image-2026-01-07-at-18-12-15.jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/WbksD6QS/Whats-App-Image-2026-01-07-at-18-12-16.jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/02w96dLf/Whats-App-Image-2026-01-07-at-18-12-16-(1).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/4N9XKbrB/Whats-App-Image-2026-01-07-at-18-12-17.jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/pXFP9YgC/Whats-App-Image-2026-01-07-at-18-12-17-(1).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/x1VnLN2M/Whats-App-Image-2026-01-07-at-18-12-18.jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/vZwb5xsW/Whats-App-Image-2026-01-07-at-18-12-19.jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/Bnf42P0N/Whats-App-Image-2026-01-07-at-18-12-20.jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/nhfpq9JK/Whats-App-Image-2026-01-07-at-18-12-20-(1).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/wjYgDRpc/Whats-App-Image-2026-01-07-at-18-12-20-(2).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/fRQDYSNC/Whats-App-Image-2026-01-07-at-18-12-20-(3).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/2SNrnLDX/Whats-App-Image-2026-01-07-at-18-12-21.jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/0y1P7Ksc/Whats-App-Image-2026-01-07-at-18-12-21-(1).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/8zgNLfSZ/Whats-App-Image-2026-01-07-at-18-12-21-(2).jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/jSYtynb9/Whats-App-Image-2026-01-07-at-18-12-22.jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/Dw3n14TM/Whats-App-Image-2026-01-07-at-18-12-22-(1).jpg" },
-            { title: "Brinde", url: "https://i.postimg.cc/mgWB71sn/Whats-App-Image-2026-01-07-at-18-12-22-(2).jpg" },
-            { title: "Cerimônia", url: "https://i.postimg.cc/dVcwGZYz/Whats-App-Image-2026-01-07-at-18-12-23.jpg" },
-            { title: "Altar", url: "https://i.postimg.cc/jSYtynbm/Whats-App-Image-2026-01-07-at-18-12-23-(1).jpg" },
-            { title: "Jardim", url: "https://i.postimg.cc/131sDVSx/Whats-App-Image-2026-01-07-at-18-12-23-(2).jpg" },
-
+            { title: "Foto 1", url: "https://i.postimg.cc/X7CnZcTc/Whats-App-Image-2026-01-07-at-18-12-15.jpg" },
+            { title: "Foto 2", url: "https://i.postimg.cc/WbksD6QS/Whats-App-Image-2026-01-07-at-18-12-16.jpg" },
+            { title: "Foto 3", url: "https://i.postimg.cc/02w96dLf/Whats-App-Image-2026-01-07-at-18-12-16-(1).jpg" },
+            { title: "Foto 4", url: "https://i.postimg.cc/4N9XKbrB/Whats-App-Image-2026-01-07-at-18-12-17.jpg" },
+            { title: "Foto 5", url: "https://i.postimg.cc/pXFP9YgC/Whats-App-Image-2026-01-07-at-18-12-17-(1).jpg" },
+            { title: "Foto 6", url: "https://i.postimg.cc/x1VnLN2M/Whats-App-Image-2026-01-07-at-18-12-18.jpg" },
+            { title: "Foto 7", url: "https://i.postimg.cc/vZwb5xsW/Whats-App-Image-2026-01-07-at-18-12-19.jpg" },
+            { title: "Foto 8", url: "https://i.postimg.cc/Bnf42P0N/Whats-App-Image-2026-01-07-at-18-12-20.jpg" },
+            { title: "Foto 9", url: "https://i.postimg.cc/nhfpq9JK/Whats-App-Image-2026-01-07-at-18-12-20-(1).jpg" },
+            { title: "Foto 10", url: "https://i.postimg.cc/wjYgDRpc/Whats-App-Image-2026-01-07-at-18-12-20-(2).jpg" },
+            { title: "Foto 11", url: "https://i.postimg.cc/fRQDYSNC/Whats-App-Image-2026-01-07-at-18-12-20-(3).jpg" },
+            { title: "Foto 12", url: "https://i.postimg.cc/2SNrnLDX/Whats-App-Image-2026-01-07-at-18-12-21.jpg" },
+            { title: "Foto 13", url: "https://i.postimg.cc/0y1P7Ksc/Whats-App-Image-2026-01-07-at-18-12-21-(1).jpg" },
+            { title: "Foto 14", url: "https://i.postimg.cc/8zgNLfSZ/Whats-App-Image-2026-01-07-at-18-12-21-(2).jpg" },
+            { title: "Foto 15", url: "https://i.postimg.cc/jSYtynb9/Whats-App-Image-2026-01-07-at-18-12-22.jpg" },
+            { title: "Foto 16", url: "https://i.postimg.cc/Dw3n14TM/Whats-App-Image-2026-01-07-at-18-12-22-(1).jpg" },
+            { title: "Foto 17", url: "https://i.postimg.cc/mgWB71sn/Whats-App-Image-2026-01-07-at-18-12-22-(2).jpg" },
+            { title: "Foto 18", url: "https://i.postimg.cc/dVcwGZYz/Whats-App-Image-2026-01-07-at-18-12-23.jpg" },
+            { title: "Foto 19", url: "https://i.postimg.cc/jSYtynbm/Whats-App-Image-2026-01-07-at-18-12-23-(1).jpg" },
+            { title: "Foto 20", url: "https://i.postimg.cc/131sDVSx/Whats-App-Image-2026-01-07-at-18-12-23-(2).jpg" },
         ]
     },
 ];
 
 export default function EventsSection() {
     const [activeGallery, setActiveGallery] = useState<typeof eventTypes[0] | null>(null);
+    
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Refs para SplitText
+    const upperTitleRef = useRef<HTMLSpanElement>(null);
+    const mainTitleRef = useRef<HTMLHeadingElement>(null);
+    const ctaTextRef = useRef<HTMLParagraphElement>(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            if (!scrollRef.current || !triggerRef.current) return;
+
+            const pinWrap = scrollRef.current;
+            const container = triggerRef.current;
+
+            // 1. SPLIT TEXT ANIMATIONS
+            const splitUpper = new SplitText(upperTitleRef.current, { type: "chars" });
+            const splitMain = new SplitText(mainTitleRef.current, { type: "chars, words" });
+            const splitCTA = new SplitText(ctaTextRef.current, { type: "lines" });
+
+            // Animação do cabeçalho ao entrar no scroll
+            gsap.from(splitUpper.chars, {
+                scrollTrigger: {
+                    trigger: upperTitleRef.current,
+                    start: "top 90%",
+                },
+                opacity: 0,
+                y: 10,
+                stagger: 0.05,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            gsap.from(splitMain.chars, {
+                scrollTrigger: {
+                    trigger: mainTitleRef.current,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                rotateX: -90,
+                stagger: 0.02,
+                duration: 1,
+                ease: "back.out(1.7)"
+            });
+
+            // 2. HORIZONTAL SCROLL (PIN)
+            const getScrollAmount = () => {
+                const horizontalWidth = pinWrap.scrollWidth;
+                return -(horizontalWidth - window.innerWidth);
+            };
+
+            gsap.to(pinWrap, {
+                x: getScrollAmount,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top top",
+                    end: () => `+=${pinWrap.scrollWidth - window.innerWidth}`, 
+                    pin: true,
+                    scrub: 1.5,
+                    invalidateOnRefresh: true,
+                    pinSpacing: true
+                }
+            });
+
+            // 3. CTA SPLIT TEXT
+            gsap.from(splitCTA.lines, {
+                scrollTrigger: {
+                    trigger: ctaTextRef.current,
+                    start: "top 90%",
+                },
+                opacity: 0,
+                y: 20,
+                stagger: 0.2,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <section className={styles["sectionContainer"]} id="events">
-            <div className={styles["header"]}>
-                <motion.span
-                    className={styles["upperTitle"]}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
+        <section ref={sectionRef} className={styles.sectionContainer} id="events">
+            
+            {/* 1. CABEÇALHO VERTICAL */}
+            <div className={styles.header}>
+                <span ref={upperTitleRef} className={styles.upperTitle}>
                     Experiências Exclusivas
-                </motion.span>
+                </span>
 
-                <motion.h2
-                    className={styles["mainTitle"]}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                >
-                    Cenários para a sua <br /> <span className={styles["italic"]}>história</span>
-                </motion.h2>
+                <h2 ref={mainTitleRef} className={styles.mainTitle}>
+                    Cenários para a sua <br /> <span className={styles.italic}>história</span>
+                </h2>
 
                 <motion.p
-                    className={styles["description"]}
+                    className={styles.description}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ delay: 0.6 }}
+                    viewport={{ once: true }}
                 >
                     Conheça alguns de nossos eventos mais memoráveis e inspire-se para criar o seu momento único com a Casa Jardine.
                 </motion.p>
             </div>
 
-            <div className={styles["grid"]}>
-                {eventTypes.map((event, idx) => (
-                    <motion.div
-                        key={event.id}
-                        className={styles["eventCard"]}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 + 0.3 }}
-                    >
-                        <div className={styles["cardInner"]}>
-                            <div
-                                className={styles["imageWrapper"]}
-                                onClick={() => setActiveGallery(event)}
-                            >
-                                <img src={event.image} alt={event.title} />
-                                <div className={styles["imageOverlay"]} />
-                                <button className={styles["viewMoreBtn"]}>
-                                    Explorar Detalhes
-                                </button>
-                            </div>
+            {/* 2. GALERIA HORIZONTAL */}
+            <div ref={triggerRef} className={styles.horizontalWrapper}>
+                <div ref={scrollRef} className={styles.horizScrollStrip}>
+                    {eventTypes.map((event) => (
+                        <div key={event.id} className={styles.eventCardWrapper}>
+                            <div className={styles.eventCard} onClick={() => setActiveGallery(event)}>
+                                <div className={styles.cardInner}>
+                                    <div className={styles.imageWrapper}>
+                                        <img src={event.image} alt={event.title} />
+                                        <div className={styles.imageOverlay} />
+                                        <button className={styles.viewMoreBtn}>
+                                            Explorar Detalhes
+                                        </button>
+                                    </div>
 
-                            <div className={styles["cardContent"]}>
-                                <h3>{event.title}</h3>
-                                <p>{event.description}</p>
-                                <div className={styles["cardFooterDecoration"]}>•</div>
+                                    <div className={styles.cardContent}>
+                                        <h3>{event.title}</h3>
+                                        <p>{event.description}</p>
+                                        <div className={styles.cardFooterDecoration}>•</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </motion.div>
-                ))}
+                    ))}
+                </div>
             </div>
 
-            {/* MODAL DE GALERIA IMERSIVA */}
+            {/* 3. CTA FINAL */}
+            <div className={styles.ctaWrapper}>
+                <div className={styles.ctaContent}>
+                    <p ref={ctaTextRef} className={styles.ctaText}>
+                        Cada detalhe é uma nota na melodia da sua celebração. <br />
+                        <strong>Vamos compor o seu próximo grande momento?</strong>
+                    </p>
+
+                    <motion.button
+                        className={styles.ctaButton}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                        viewport={{ once: true }}
+                        onClick={() => window.open('https://wa.me/5577999920367', '_blank')}
+                    >
+                        <span>Solicitar Orçamento Exclusivo</span>
+                        <div className={styles.ctaButtonGlow} />
+                    </motion.button>
+                </div>
+            </div>
+
+            {/* MODAL DE GALERIA */}
             <AnimatePresence>
                 {activeGallery && (
                     <motion.div
-                        className={styles["modalOverlay"]}
+                        className={styles.modalOverlay}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
                     >
-                        <motion.button
-                            className={styles["closeBtn"]}
+                        <button
+                            className={styles.closeBtn}
                             onClick={() => setActiveGallery(null)}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 }}
                         >
                             <IoCloseOutline size={24} /> <span>Fechar</span>
-                        </motion.button>
+                        </button>
 
-                        <div className={styles["galleryWrapper"]}>
-                            <motion.h2
-                                className={styles["galleryTitle"]}
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                            >
-                                {activeGallery["title"]}
-                            </motion.h2>
+                        <div className={styles.galleryWrapper}>
+                            <h2 className={styles.galleryTitle}>
+                                {activeGallery.title}
+                            </h2>
 
-                            <div className={styles["galleryContainer"]}>
-                                {/* PASSA AS IMAGENS DO EVENTO SELECIONADO AQUI */}
-                                <ImageGallery images={activeGallery["gallery"]} />
+                            <div className={styles.galleryContainer}>
+                                <ImageGallery images={activeGallery.gallery} />
                             </div>
                         </div>
                     </motion.div>
                 )}
-    
-                <motion.div
-                    className={styles["ctaWrapper"]}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                >
-                    <div className={styles["ctaContent"]}>
-                        <p className={styles["ctaText"]}>
-                            Cada detalhe é uma nota na melodia da sua celebração. <br />
-                            <strong>Vamos compor o seu próximo grande momento?</strong>
-                        </p>
-
-                        <motion.button
-                            className={styles["ctaButton"]}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={() => window.open('https://wa.me/5577999920367', '_blank')}
-                        >
-                            <span>Solicitar Orçamento Exclusivo</span>
-                           
-                            <div className={styles["ctaButtonGlow"]} />
-                        </motion.button>
-                    </div>
-                </motion.div>
             </AnimatePresence>
         </section>
     );
