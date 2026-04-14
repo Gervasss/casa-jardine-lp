@@ -88,7 +88,7 @@ function FrameComponent({
               playsInline
               // "auto" garante que o navegador tente baixar o primeiro frame 
               // para servir de "foto" enquanto o vídeo está pausado.
-              preload="auto" 
+              preload={hasInteracted ? "auto" : "metadata"}
               ref={videoRef}
               style={{ 
                 opacity: 1,

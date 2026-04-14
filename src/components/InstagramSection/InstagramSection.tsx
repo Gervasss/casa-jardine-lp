@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { FaInstagram, FaHeart, FaComment } from "react-icons/fa";
 import { gsap } from "gsap";
@@ -20,7 +21,6 @@ interface Post {
 
 export default function InstagramSection() {
     const [posts, setPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
     
     const sectionRef = useRef<HTMLElement | null>(null);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -29,8 +29,6 @@ export default function InstagramSection() {
     const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
     useLayoutEffect(() => {
-        if (loading) return;
-
         const ctx = gsap.context(() => {
             // SplitText para o Título principal
             const splitTitle = new SplitText(titleRef.current, { type: "chars, words" });
@@ -80,7 +78,7 @@ export default function InstagramSection() {
         }, sectionRef);
 
         return () => ctx.revert();
-    }, [loading]);
+    }, [posts.length]);
 
     // Mock Data
     useLayoutEffect(() => {
@@ -93,21 +91,8 @@ export default function InstagramSection() {
             { id: "6", mediaUrl: "/inst 6.png", permalink: "#", caption: "Quando não há evento...", likeCount: 189, commentsCount: 4 },
         ];
 
-        const timer = setTimeout(() => {
-            setPosts(mockData);
-            setLoading(false);
-        }, 800);
-
-        return () => clearTimeout(timer);
+        setPosts(mockData);
     }, []);
-
-    if (loading) {
-        return (
-            <div className={styles["loading-container"]}>
-                <div className={styles["loader"]}></div>
-            </div>
-        );
-    }
 
     return (
         <section ref={sectionRef} className={styles["container"]} id="instagram">
@@ -132,7 +117,13 @@ export default function InstagramSection() {
                             className={styles["post-card"]}
                         >
                             <div className={styles["image-container"]}>
-                                <img src={post.mediaUrl} alt={post.caption} />
+                                <Image
+                                    src={post.mediaUrl}
+                                    alt={post.caption}
+                                    fill
+                                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                                    className={styles["post-image"]}
+                                />
                                 <div className={styles["overlay"]}>
                                     <div className={styles["stats"]}>
                                         <span className={styles["stat-item"]}><FaHeart /> {post.likeCount}</span>

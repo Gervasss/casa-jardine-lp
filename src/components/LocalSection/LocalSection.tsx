@@ -64,7 +64,7 @@ export default function LocationSection() {
               fill
               style={{ objectFit: 'cover' }}
               className={styles.mapImage}
-              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className={styles.mapOverlay}>
                 <div className={styles.mapBadge}>

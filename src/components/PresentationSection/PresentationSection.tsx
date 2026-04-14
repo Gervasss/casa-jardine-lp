@@ -201,7 +201,7 @@ const PresentationSection = () => {
                     <p className={styles['video-subtitle']} ref={videoSubtitleRef}>Sinta a atmosfera da Casa Jardine através de um tour exclusivo</p>
                 </div>
                 <div className={styles['video-container']} ref={videoPlayerRef}>
-                    <VideoPlayer src="/casa-jardine.mp4" />
+                    <VideoPlayer src="/casa-jardine.mp4" poster="/background.jpeg" />
                 </div>
             </div>
         </section>

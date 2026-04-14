@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import React from 'react';
 import styles from './FooterSection.module.css';
 import { BsInstagram } from 'react-icons/bs';
@@ -26,10 +27,12 @@ export default function FooterSection() {
                 <div className={styles.brandSide}>
                     <a href="#hero" onClick={(e) => scrollToId(e, "hero")} className={styles.logo}>
                         <span className={styles.logoIcon}>
-                            <img
-                                src={"/casaLogo1.jpg"}
+                            <Image
+                                src="/casaLogo1.jpg"
                                 alt="Logo Casa Jardine"
-                                style={{ borderRadius: "60px", width: "100%", height: "100%", objectFit: "cover" }}
+                                fill
+                                sizes="36px"
+                                style={{ borderRadius: "60px", objectFit: "cover" }}
                             />
                         </span>
                         <span className={styles.logoText}>

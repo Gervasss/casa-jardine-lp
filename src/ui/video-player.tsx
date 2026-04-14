@@ -108,6 +108,7 @@ const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
         poster={poster}
         onClick={togglePlay}
         playsInline
+        preload="metadata"
       />
 
       <AnimatePresence>

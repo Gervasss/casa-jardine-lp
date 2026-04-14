@@ -58,7 +58,7 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
-.image-container img {
+.post-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -83,7 +83,7 @@
   opacity: 1;
 }
 
-.image-container:hover img {
+.image-container:hover .post-image {
   transform: scale(1.1);
 }
 

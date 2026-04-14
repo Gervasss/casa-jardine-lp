@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -88,9 +89,12 @@ export function WhatsAppFloat() {
                 <div className={styles.headerTop}>
                   <div className={styles.headerLeft}>
                     <div className={styles.avatarWrap}>
-                      <img
+                      <Image
                         src="/casaLogo1.jpg"
                         alt="Logo Casa Jardine"
+                        width={50}
+                        height={50}
+                        sizes="50px"
                         className={styles.avatar}
                       />
                       <div className={styles.onlineDot} />
