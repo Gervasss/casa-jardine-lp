@@ -90,7 +90,7 @@ const HeroSection = () => {
       >
         <div className={styles['loader-content']}>
           <img
-            src="/CasaJardine-Marca-Verde.png"
+            src="https://i.postimg.cc/wv53059m/Casa-Jardine-Marca-Verde.png"
             alt="Logo Casa Jardine"
             className={styles['loader-logo']}
           />
