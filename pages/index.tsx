@@ -1,24 +1,17 @@
-
 import AllSections from "@/src/components/AllSections/AllSections";
-import ContactSection from "@/src/components/ContactSection/ContactSection";
-import EventsSection from "@/src/components/EventsSection/EventsSection";
-import FooterSection from "@/src/components/FooterSection/FooterSection";
-import HeroSection from "@/src/components/HeroSection/HeroSection";
-import InstagramSection from "@/src/components/InstagramSection/InstagramSection";
-import LocationSection from "@/src/components/LocalSection/LocalSection";
-import PresentationSection from "@/src/components/PresentationSection/PresentationSection";
-import ProfileSection from "@/src/components/ProfileSection/ProfileSection";
-import VideoShowcaseSection from "@/src/components/VideoShowcaseSection/VideoShowcaseSection";
-import WhatsAppFloat from "@/src/components/WhatsappFloat/WhatsappFloat";
 import Head from "next/head";
 import Script from "next/script";
 
-
 function HomePage() {
+    // URL exata do subdomínio onde este projeto está hospedado na Vercel
+    const siteUrlVercel = "https://casa-jardine-lp.vercel.app";
+
+    const ogImageUrl = `${siteUrlVercel}/IMG_3912.jpg`; // Caminho absoluto para a imagem OG
+
     return (
         <>
             <Head>
-                {/* Título otimizado para o Google encontrar em VDC */}
+                {/* Título otimizado */}
                 <title>Casa Jardine | Espaço de Eventos e Festas em Vitória da Conquista - BA</title>
 
                 {/* Meta description – Foco em Casamentos, 15 anos e Corporativo */}
@@ -37,7 +30,7 @@ function HomePage() {
                 <meta name="author" content="Casa Jardine" />
                 <meta name="robots" content="index, follow" />
 
-                {/* Ajuste para a URL real da Casa Jardine */}
+                {/* Canonical URL - APONTA PARA O DOMÍNIO PRINCIPAL */}
                 <link rel="canonical" href="https://www.casajardine.com.br" />
 
                 {/* Open Graph – Como o link aparece no WhatsApp e Instagram */}
@@ -48,10 +41,11 @@ function HomePage() {
                     property="og:description"
                     content="O cenário perfeito para sua festa. Conheça nossa estrutura para casamentos e eventos em Vitória da Conquista."
                 />
-                <meta
-                    property="og:image"
-                    content="https://www.casajardine.com.br/casaLogo1.jpg"
-                />
+                
+                {/* CONFIGURAÇÃO DA IMAGEM - Caminho absoluto pela Vercel */}
+                <meta property="og:image" content={ogImageUrl} />
+                <meta property="og:image:secure_url" content={ogImageUrl} />
+                <meta property="og:image:type" content="image/jpeg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
                 <meta
@@ -68,17 +62,32 @@ function HomePage() {
                     name="twitter:description"
                     content="Infraestrutura completa para o seu evento em Vitória da Conquista."
                 />
-                <meta
-                    name="twitter:image"
-                    content="https://www.casajardine.com.br/casaLogo1.jpg"
-                />
+                <meta name="twitter:image" content={ogImageUrl} />
 
                 {/* Favicon e Viewport */}
                 <link rel="icon" type="image/png" href="/casaLogo1.jpg" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
 
-            {/* Structured Data: Local Business (Para aparecer no Maps/Busca Local) */}
+            {/* Google Analytics Script - Fora do Head para performance */}
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+            />
+            <Script
+                id="google-analytics"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'GA_MEASUREMENT_ID');
+                    `,
+                }}
+            />
+
+            {/* Structured Data: Local Business */}
             <Script
                 id="schema-org-local-business"
                 type="application/ld+json"
@@ -87,7 +96,7 @@ function HomePage() {
                         "@context": "https://schema.org",
                         "@type": "EventVenue",
                         "name": "Casa Jardine",
-                        "description": "Espaço premium para casamentos, festas e eventos corporativos em Vitória da Conquista.",
+                        "description": "Espaço premium para casamentos, festas e eventos corporativos em Vitória da Conquista especializado em infraestrutura completa.",
                         "url": "https://www.casajardine.com.br",
                         "telephone": "+5577999920367",
                         "priceRange": "R$$",
@@ -124,30 +133,9 @@ function HomePage() {
                 }}
             />
 
-            {/* Google Analytics Script */}
-            <Script
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-            />
-            <Script
-                id="google-analytics"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'GA_MEASUREMENT_ID');
-                    `,
-                }}
-            />
-
-            {/* Conteúdo da página inicial  */}
+            {/* Conteúdo da página inicial */}
             <main>
               <AllSections />
-              
-
-              
             </main>
         </>
     );
