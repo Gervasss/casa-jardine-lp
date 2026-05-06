@@ -417,4 +417,8 @@
   .hero-scroll-indicator {
     display: none;
   }
+
+  .hero-cta{
+    margin-top: 5px;
+  }
 }
