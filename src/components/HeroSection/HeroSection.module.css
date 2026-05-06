@@ -60,7 +60,6 @@
   text-align: center;
   width: min(100%, 1180px);
   padding: 0 clamp(1rem, 4vw, 3rem);
-  animation: fadeIn 1.5s ease-out;
 }
 
 .hero-title {
@@ -85,6 +84,7 @@
   max-width: 46rem;
   font-weight: 300;
   line-height: 1.65;
+  opacity: 0;
 }
 
 .hero-cta {
@@ -101,6 +101,7 @@
   letter-spacing: 1px;
   font-size: clamp(0.78rem, 0.85vw, 0.95rem);
   min-height: 46px;
+  opacity: 0;
 }
 
 .hero-cta:hover {
@@ -343,7 +344,12 @@
   }
 
   .hero-scroll-indicator {
+
     bottom: clamp(1rem, 2.2vh, 1.75rem);
+  }
+
+  .hero-cta{
+    margin-top: -25px;
   }
 }
 
@@ -361,9 +367,7 @@
     font-size: clamp(0.95rem, 1.45vw, 1.1rem);
     max-width: 36rem;
   }
-    .hero-scroll-indicator{
-      margin-top:20px;
-    }
+  
 }
 
 @media (max-width: 768px) {
@@ -393,6 +397,7 @@
     bottom: 1rem;
     transform: translateX(-50%) scale(0.9);
   }
+
 }
 
 @media (max-width: 420px) {

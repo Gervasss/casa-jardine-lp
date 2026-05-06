@@ -10,11 +10,13 @@ gsap.registerPlugin(SplitText);
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!titleRef.current) return;
+    if (!titleRef.current || !descriptionRef.current || !ctaRef.current) return;
 
     const ctx = gsap.context(() => {
       const mySplitText = new SplitText(titleRef.current, {
@@ -22,7 +24,14 @@ const HeroSection = () => {
         charsClass: "char"
       });
 
-      gsap.from(mySplitText.chars, {
+      gsap.set([descriptionRef.current, ctaRef.current], {
+        autoAlpha: 0,
+        y: 22,
+      });
+
+      const tl = gsap.timeline();
+
+      tl.from(mySplitText.chars, {
         duration: 1.4,
         opacity: 0,
         scale: 0,
@@ -31,7 +40,26 @@ const HeroSection = () => {
         transformOrigin: "50% 50% -50",
         ease: "expo.out",
         stagger: 0.04,
-      });
+      })
+      .to(descriptionRef.current, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        clearProps: "transform",
+      }, "+=0.05")
+      .to(ctaRef.current, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        clearProps: "transform",
+      }, "+=0.1");
+
+      return () => {
+        tl.kill();
+        mySplitText.revert();
+      };
     }, containerRef);
 
     return () => ctx.revert();
@@ -111,11 +139,11 @@ const HeroSection = () => {
           Alguns encontros não são apenas eventos.  <span className={styles['hero-title-italic']}>São experiências que ficam. </span>
         </h1>
 
-        <p className={styles['hero-description']}>
+        <p ref={descriptionRef} className={styles['hero-description']}>
           Na Casa Jardine, cada detalhe é pensado para que você não apenas celebre,  mas sinta, viva e leve esse momento com você. 
         </p>
 
-        <button className={styles['hero-cta']} onClick={handleConhecerClick}>
+        <button ref={ctaRef} className={styles['hero-cta']} onClick={handleConhecerClick}>
           Quero viver essa experiência 
         </button>
       </div>
