@@ -238,7 +238,7 @@ export default function EventsSection() {
                 </span>
 
                 <h2 ref={mainTitleRef} className={styles.mainTitle}>
-                    Cenários para a sua <br /> <span className={styles.italic}>história</span>
+                    Histórias que já passaram   <br /> <span className={styles.italic}>por aqui</span>
                 </h2>
 
                 <motion.p
@@ -248,7 +248,7 @@ export default function EventsSection() {
                     transition={{ delay: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    Conheça alguns de nossos eventos mais memoráveis e inspire-se para criar o seu momento único com a Casa Jardine.
+                    Diferentes formatos, estilos e propostas que mostram como cada evento ganha identidade própria. 
                 </motion.p>
             </div>
 
@@ -283,8 +283,8 @@ export default function EventsSection() {
             <div className={styles.ctaWrapper}>
                 <div className={styles.ctaContent}>
                     <p ref={ctaTextRef} className={styles.ctaText}>
-                        Cada detalhe é uma nota na melodia da sua celebração. <br />
-                        <strong>Vamos compor o seu próximo grande momento?</strong>
+                        Cada detalhe pensado para que você viva o momento com tranquilidade.  <br />
+                        <strong>Vamos começar a planejar o seu evento?</strong>
                     </p>
 
                     <motion.button
@@ -297,7 +297,7 @@ export default function EventsSection() {
                         viewport={{ once: true }}
                         onClick={() => window.open('https://wa.me/5577999920367', '_blank')}
                     >
-                        <span>Solicitar Orçamento Exclusivo</span>
+                        <span>Agendar Visita</span>
                         <div className={styles.ctaButtonGlow} />
                     </motion.button>
                 </div>

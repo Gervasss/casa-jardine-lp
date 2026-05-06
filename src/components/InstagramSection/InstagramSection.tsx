@@ -99,9 +99,9 @@ export default function InstagramSection() {
             <div className={styles["content"]}>
                 <header className={styles["header"]}>
                     <span ref={handleRef} className={styles["handle"]}>@casajardinevca</span>
-                    <h2 ref={titleRef} className={styles["title"]}>Vibe Casa Jardine</h2>
+                    <h2 ref={titleRef} className={styles["title"]}>O que já foi vivido por aqui </h2>
                     <p ref={subtitleRef} className={styles["subtitle"]}>
-                        Acompanhe momentos reais e inspirações em nosso feed oficial.
+                       Cada imagem carrega uma história, um estilo e uma experiência construída com cuidado. 
                     </p>
                 </header>
 

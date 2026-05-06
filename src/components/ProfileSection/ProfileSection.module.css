@@ -17,9 +17,19 @@
   text-transform: uppercase;
   letter-spacing: 4px;
   font-size: 0.85rem;
+  line-height: 1.6;
   font-weight: 700;
   display: block;
   margin-bottom: 15px;
+  padding: 4px 0;
+  overflow: visible;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+.upper-title > * {
+  white-space: nowrap;
 }
 
 .main-title {
@@ -56,12 +66,14 @@
 
 .stat-card {
   background: #ffffff;
-  padding: 20px 30px;
+  padding: 24px 26px;
   border-radius: 15px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
-  min-width: 220px;
+  flex: 1 1 300px;
+  min-width: 280px;
+  max-width: 340px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   border: 1px solid rgba(210, 180, 140, 0.1);
   transition: calc(0.3s);
@@ -76,36 +88,141 @@
 .stat-icon {
   font-size: 1.8rem;
   color: #4B5320; /* Verde Caqui */
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .stat-value {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.12rem;
+  line-height: 1.2;
   font-weight: 800;
   color: #2C1E12;
 }
 
 .stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #999;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #777;
+  letter-spacing: 0;
 }
 
-/* GRID DOS CARDS */
-.cards-grid {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
+.founders-feature {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 460px) minmax(220px, 1fr);
+  align-items: center;
+  gap: 28px;
   width: 100%;
-  max-width: 1200px;
-  flex-wrap: wrap;
+  max-width: 1120px;
 }
 
-.profile-card-wrapper {
-  flex: 1;
-  max-width: 400px;
-  min-width: 300px;
+.founder-card {
+  width: 100%;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(75, 83, 32, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(44, 30, 18, 0.08);
+}
+
+.founder-profile {
+  position: relative;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(210, 180, 140, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(44, 30, 18, 0.05);
+}
+
+.founder-profile::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  width: 34px;
+  height: 1px;
+  background: #D2B48C;
+}
+
+.founder-profile-left {
+  text-align: right;
+}
+
+.founder-profile-left::before {
+  right: -18px;
+}
+
+.founder-profile-right {
+  text-align: left;
+}
+
+.founder-profile-right::before {
+  left: -18px;
+}
+
+.founder-kicker {
+  display: block;
+  margin-bottom: 12px;
+  color: #D2B48C;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.founder-profile h3 {
+  margin: 0 0 8px;
+  font-family: serif;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: #2C1E12;
+}
+
+.founder-profile p {
+  margin: 0 0 18px;
+  color: #666;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.founder-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4B5320;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.founder-instagram svg {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.founder-instagram:hover {
+  color: #2C1E12;
+}
+
+.founder-image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 717 / 799;
+  background: #f2efe7;
+}
+
+.founder-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 @media (max-width: 1024px) {
@@ -115,10 +232,43 @@
   .stat-card {
     min-width: 45%;
   }
+
+  .founders-feature {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+
+  .founder-card {
+    order: 1;
+  }
+
+  .founder-profile-left {
+    order: 2;
+    text-align: left;
+  }
+
+  .founder-profile-right {
+    order: 3;
+  }
+
+  .founder-profile::before {
+    left: 28px;
+    right: auto;
+    top: -1px;
+  }
 }
 
 @media (max-width: 768px) {
+  .upper-title {
+    letter-spacing: 2px;
+    font-size: 0.72rem;
+    max-width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .main-title { font-size: 2.2rem; }
   .stat-card { width: 100%; }
-  .cards-grid { gap: 40px; }
+  .founders-feature { max-width: 100%; }
+  .founder-profile { padding: 24px; }
 }

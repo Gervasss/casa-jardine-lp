@@ -108,16 +108,15 @@ const HeroSection = () => {
 
       <div className={styles['hero-content']}>
         <h1 ref={titleRef} className={styles['hero-title']}>
-          Onde seus sonhos encontram o <span className={styles['hero-title-italic']}>cenário perfeito</span>
+          Alguns encontros não são apenas eventos.  <span className={styles['hero-title-italic']}>São experiências que ficam. </span>
         </h1>
 
         <p className={styles['hero-description']}>
-          A Casa Jardine oferece sofisticação e natureza para casamentos,
-          aniversários, eventos e os momentos mais importantes da sua vida.
+          Na Casa Jardine, cada detalhe é pensado para que você não apenas celebre,  mas sinta, viva e leve esse momento com você. 
         </p>
 
         <button className={styles['hero-cta']} onClick={handleConhecerClick}>
-          Conhecer
+          Quero viver essa experiência 
         </button>
       </div>
 

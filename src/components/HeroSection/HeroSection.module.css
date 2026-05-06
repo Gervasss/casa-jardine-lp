@@ -77,6 +77,7 @@
 }
 
 .hero-title-italic {
+  display: block;
   font-style: italic;
   color: #e9debe; 
 }

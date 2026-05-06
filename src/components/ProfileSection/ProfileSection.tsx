@@ -4,9 +4,8 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ProfileCard from "@/src/ui/profileCard";
 import styles from './ProfileSection.module.css';
-import { IoCalendarOutline, IoStarOutline, IoRibbonOutline, IoCheckmarkDoneOutline } from 'react-icons/io5';
+import { IoCalendarOutline, IoLogoInstagram, IoRibbonOutline, IoCheckmarkDoneOutline } from 'react-icons/io5';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -18,39 +17,37 @@ const ProfileSection = () => {
   
   // Refs para Arrays
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const founderProfilesRef = useRef<(HTMLDivElement | null)[]>([]);
   const statsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const stats = [
-    { icon: <IoCalendarOutline />, value: "4+ Anos", label: "de história" },
-    { icon: <IoStarOutline />, value: "90+", label: "Sonhos realizados" },
-    { icon: <IoRibbonOutline />, value: "100%", label: "Dedicação" },
-    { icon: <IoCheckmarkDoneOutline />, value: "Referência", label: "em Conquista" },
-  ];
-
-  const founders = [
     {
-      name: "Karine Flores",
-      handle: "karineoflores",
-      title: "Designer de Interiores e Eventos",
-      status: "Transformando espaços em cenários inesquecíveis",
-      avatarUrl: "/karine.png",
+      icon: <IoCalendarOutline />,
+      value: "+90 eventos realizados",
+      label: "Histórias que passaram por aqui e continuam sendo lembradas",
     },
     {
-      name: "Daisy Cardoso",
-      handle: "daisycardoso.pessoasenegocios",
-      title: "Estrategista de Experiências Corporativas",
-      status: "Transformando eventos em resultados memoráveis",
-      avatarUrl: "/daisy.png",
-    }
+      icon: <IoCheckmarkDoneOutline />,
+      value: "Atuação completa",
+      label: "Do planejamento ao dia do evento, tudo acompanhado de perto",
+    },
+    {
+      icon: <IoRibbonOutline />,
+      value: "Experiência consolidada",
+      label: "Anos construindo confiança em cada detalhe",
+    },
   ];
+
+  const foundersImageUrl = "https://i.postimg.cc/qvc1CZdN/Captura-de-Tela-(12).png";
 
   useLayoutEffect(() => {
     // Filtra elementos nulos para garantir que o GSAP receba elementos válidos
     const validCards = cardsRef.current.filter(el => el !== null);
+    const validFounderProfiles = founderProfilesRef.current.filter(el => el !== null);
     const validStats = statsRef.current.filter(el => el !== null);
 
     const ctx = gsap.context(() => {
-      const splitUpper = new SplitText(upperTitleRef.current, { type: "chars" });
+      const splitUpper = new SplitText(upperTitleRef.current, { type: "words" });
       const splitMain = new SplitText(mainTitleRef.current, { type: "words, chars" });
       const splitDesc = new SplitText(descriptionRef.current, { type: "lines" });
 
@@ -63,9 +60,9 @@ const ProfileSection = () => {
       });
 
       // 1. Animação dos Textos
-      tl.from(splitUpper.chars, {
+      tl.from(splitUpper.words, {
         opacity: 0,
-        y: 10,
+        y: 6,
         stagger: 0.03,
         duration: 0.6,
         ease: "power2.out"
@@ -86,23 +83,28 @@ const ProfileSection = () => {
         ease: "power3.out"
       }, "-=0.5");
 
-      // 2. Animação dos Cards (Efeito colisão suave)
-      if (validCards.length >= 2) {
-        tl.from(validCards[0], {
-          x: -150,
+      // 2. Animação do card principal
+      if (validCards.length) {
+        tl.from(validCards, {
+          y: 60,
           opacity: 0,
-          duration: 1.2,
+          scale: 0.96,
+          duration: 1.1,
           ease: "expo.out"
-        }, "-=0.6")
-        .from(validCards[1], {
-          x: 150,
-          opacity: 0,
-          duration: 1.2,
-          ease: "expo.out"
-        }, "-=1.0");
+        }, "-=0.6");
       }
 
-      // 3. Badges (Stats) - Corrigido o seletor
+      if (validFounderProfiles.length) {
+        tl.from(validFounderProfiles, {
+          y: 28,
+          opacity: 0,
+          stagger: 0.18,
+          duration: 0.8,
+          ease: "power3.out"
+        }, "-=0.15");
+      }
+
+      // 3. Badges (Stats) 
       tl.from(validStats, {
         opacity: 0,
         y: 40,
@@ -110,7 +112,7 @@ const ProfileSection = () => {
         stagger: 0.2,
         duration: 0.8,
         ease: "back.out(1.5)",
-        clearProps: "all" // Limpa os estilos após a animação para não bugar o hover
+        clearProps: "all" 
       }, "-=0.5");
 
     }, containerRef);
@@ -122,31 +124,65 @@ const ProfileSection = () => {
     <section ref={containerRef} className={styles['founders-container']} id="profile">
       <div className={styles['founders-header']}>
         <span ref={upperTitleRef} className={styles['upper-title']}>
-          Conheça as Mentes
+         Por trás de cada evento, existem escolhas feitas com intenção
         </span>
         <h2 ref={mainTitleRef} className={styles['main-title']}>
-          Quem faz a <span className={styles['italic']}>Casa Jardine</span> acontecer
+          A Casa Jardine é conduzida por quem entende que cada <span className={styles['italic']}>detalhe</span> importa.
         </h2>
         <p ref={descriptionRef} className={styles['description']}>
-          Combinamos anos de experiência em hospitalidade e design para criar o cenário perfeito para o seu dia.
+          Da estética à experiência, tudo é pensado com cuidado, sensibilidade e presença. 
         </p>
       </div>
 
-      <div className={styles['cards-grid']}>
-        {founders.map((socia, index) => (
-          <div
-            key={index}
-            ref={(el) => { cardsRef.current[index] = el; }}
-            className={styles['profile-card-wrapper']}
+      <div className={styles['founders-feature']}>
+        <div
+          ref={(el) => { founderProfilesRef.current[0] = el; }}
+          className={`${styles['founder-profile']} ${styles['founder-profile-left']}`}
+        >
+          <span className={styles['founder-kicker']}>Fundadora</span>
+          <h3>Karine Flores</h3>
+          <p>Designer de interiores</p>
+          <a
+            href="https://www.instagram.com/karineoflores"
+            target="_blank"
+            rel="noreferrer"
+            className={styles['founder-instagram']}
           >
-            <ProfileCard 
-              {...socia}
-              enableTilt={true}
-              enableMobileTilt={true}
-              showBehindGradient={false}
+            <IoLogoInstagram />
+            @karineoflores
+          </a>
+        </div>
+
+        <div
+          ref={(el) => { cardsRef.current[0] = el; }}
+          className={styles['founder-card']}
+        >
+          <div className={styles['founder-image-frame']}>
+            <img
+              src={foundersImageUrl}
+              alt="Karine Flores e Daisy Cardoso"
+              className={styles['founder-image']}
             />
           </div>
-        ))}
+        </div>
+
+        <div
+          ref={(el) => { founderProfilesRef.current[1] = el; }}
+          className={`${styles['founder-profile']} ${styles['founder-profile-right']}`}
+        >
+          <span className={styles['founder-kicker']}>Sócia</span>
+          <h3>Daisy Cardoso</h3>
+          <p>Estrategista de experiências corporativas</p>
+          <a
+            href="https://www.instagram.com/daisycardoso.pessoasenegocios"
+            target="_blank"
+            rel="noreferrer"
+            className={styles['founder-instagram']}
+          >
+            <IoLogoInstagram />
+            @daisycardoso.pessoasenegocios
+          </a>
+        </div>
       </div>
 
       <div className={styles['stats-container']}>
