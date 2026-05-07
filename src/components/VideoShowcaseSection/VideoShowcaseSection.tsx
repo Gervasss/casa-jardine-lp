@@ -27,7 +27,6 @@ export default function VideoShowcaseSection() {
   const taglineRef = useRef(null);
   const titleRef = useRef(null);
   const gridRef = useRef(null);
-  const logoRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -71,24 +70,7 @@ export default function VideoShowcaseSection() {
         filter: "blur(10px)",
         duration: 1.2,
         ease: "expo.out"
-      }, "-=0.5")
-
-      // 3. Logo Central
-      .from(logoRef.current, {
-        opacity: 0,
-        scale: 0.5,
-        duration: 1.2,
-        ease: "elastic.out(1, 0.7)"
-      }, "-=1.0");
-
-      // Loop de pulsação na logo
-      gsap.to(logoRef.current, {
-        scale: 1.05,
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
+      }, "-=0.5");
 
     }, sectionRef);
 
@@ -111,10 +93,11 @@ export default function VideoShowcaseSection() {
             frames={videoFrames}
             hoverSize={6}
             gapSize={16}
+            revealInterval={220}
           />
         </div>
 
-        <div ref={logoRef} className={styles["logo-overlay"]}>
+        <div className={styles["logo-overlay"]}>
           <img 
             src="/CasaJardine-Marca-Bege.png" 
             alt="Casa Jardine Logo" 

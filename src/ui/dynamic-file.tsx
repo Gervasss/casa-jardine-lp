@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 
 interface FrameComponentProps {
   video: string
-  width: number | string
-  height: number | string
+  width?: number | string
+  height?: number | string
   className?: string
   corner: string
   edgeHorizontal: string
@@ -16,12 +16,30 @@ interface FrameComponentProps {
   borderSize: number
   showFrame: boolean
   isHovered: boolean
+  isRevealed: boolean
+}
+
+interface FrameData extends Omit<FrameComponentProps, "showFrame" | "isHovered" | "isRevealed"> {
+  id: number
+  defaultPos: {
+    x: number
+    y: number
+    w: number
+    h: number
+  }
+}
+
+interface DynamicFrameLayoutProps {
+  frames: FrameData[]
+  className?: string
+  showFrames?: boolean
+  hoverSize?: number
+  gapSize?: number
+  revealInterval?: number
 }
 
 function FrameComponent({
   video,
-  width,
-  height,
   className = "",
   corner,
   edgeHorizontal,
@@ -31,22 +49,21 @@ function FrameComponent({
   borderSize,
   showFrame,
   isHovered,
+  isRevealed,
 }: FrameComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [hasInteracted, setHasInteracted] = useState(false)
 
   // Sincroniza Play/Pause
   useEffect(() => {
     const videoElement = videoRef.current
-    if (!videoElement) return
+    if (!videoElement || !isRevealed) return
 
     if (isHovered) {
       videoElement.play().catch(() => {})
-      setHasInteracted(true)
     } else {
       videoElement.pause()
     }
-  }, [isHovered])
+  }, [isHovered, isRevealed])
 
   return (
     <div
@@ -80,23 +97,23 @@ function FrameComponent({
               transition: "transform 0.3s ease-in-out",
             }}
           >
-            <video
-              className="w-full h-full object-cover transition-all duration-700"
-              src={video}
-              loop
-              muted
-              playsInline
-              // "auto" garante que o navegador tente baixar o primeiro frame 
-              // para servir de "foto" enquanto o vídeo está pausado.
-              preload={hasInteracted ? "auto" : "metadata"}
-              ref={videoRef}
-              style={{ 
-                opacity: 1,
-                filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(8px)",
-                transform: isHovered ? "scale(1)" : "scale(1.1)",
-                backgroundColor: "#1a1a15"
-              }}
-            />
+            {isRevealed && (
+              <video
+                className="w-full h-full object-cover transition-all duration-700"
+                src={video}
+                loop
+                muted
+                playsInline
+                preload={isHovered ? "auto" : "metadata"}
+                ref={videoRef}
+                style={{ 
+                  opacity: 1,
+                  filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(8px)",
+                  transform: isHovered ? "scale(1)" : "scale(1.1)",
+                  backgroundColor: "#1a1a15"
+                }}
+              />
+            )}
           </div>
         </div>
 
@@ -119,12 +136,51 @@ function FrameComponent({
 
 export function DynamicFrameLayout({ 
   frames: initialFrames, 
-  className,
+  className = "",
   showFrames = false,
   hoverSize = 6,
-  gapSize = 4
-}: any) {
+  gapSize = 4,
+  revealInterval = 180
+}: DynamicFrameLayoutProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState<{ row: number; col: number } | null>(null)
+  const [hasStartedReveal, setHasStartedReveal] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(0)
+
+  useEffect(() => {
+    const container = containerRef.current
+
+    if (!container || !("IntersectionObserver" in window)) {
+      const frame = window.requestAnimationFrame(() => setHasStartedReveal(true))
+      return () => window.cancelAnimationFrame(frame)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStartedReveal(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "120px 0px", threshold: 0.2 }
+    )
+
+    observer.observe(container)
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!hasStartedReveal) return
+
+    const timers = initialFrames.map((_, index) =>
+      window.setTimeout(() => {
+        setVisibleCount((current) => Math.max(current, index + 1))
+      }, index * revealInterval)
+    )
+
+    return () => timers.forEach((timer) => window.clearTimeout(timer))
+  }, [hasStartedReveal, initialFrames, revealInterval])
 
   const handleInteraction = (row: number, col: number) => {
     if (hovered?.row === row && hovered?.col === col) {
@@ -150,6 +206,7 @@ export function DynamicFrameLayout({
 
   return (
     <div
+      ref={containerRef}
       className={`relative w-full h-full ${className}`}
       style={{
         display: "grid",
@@ -161,15 +218,26 @@ export function DynamicFrameLayout({
         touchAction: "pan-y" 
       }}
     >
-      {initialFrames.map((frame: any) => {
+      {initialFrames.map((frame, index) => {
         const row = Math.floor(frame.defaultPos.y / 4)
         const col = Math.floor(frame.defaultPos.x / 4)
+        const isRevealed = index < visibleCount
 
         return (
           <motion.div
             key={frame.id}
             className="relative cursor-pointer"
-            style={{ zIndex: hovered?.row === row && hovered?.col === col ? 10 : 1 }}
+            initial={false}
+            animate={{
+              opacity: isRevealed ? 1 : 0,
+              scale: isRevealed ? 1 : 0.92,
+              y: isRevealed ? 0 : 18,
+            }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            style={{ 
+              zIndex: hovered?.row === row && hovered?.col === col ? 10 : 1,
+              pointerEvents: isRevealed ? "auto" : "none",
+            }}
             onMouseEnter={() => setHovered({ row, col })}
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleInteraction(row, col)}
@@ -178,6 +246,7 @@ export function DynamicFrameLayout({
               {...frame}
               showFrame={showFrames}
               isHovered={hovered?.row === row && hovered?.col === col}
+              isRevealed={isRevealed}
             />
           </motion.div>
         )
