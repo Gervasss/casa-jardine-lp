@@ -11,15 +11,15 @@ import { MdTouchApp } from "react-icons/md";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const videoFrames = [
-  { id: 1, video: "/videos/1.mp4", defaultPos: { x: 0, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 2, video: "/videos/2.mp4", defaultPos: { x: 4, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 3, video: "/videos/3.mp4", defaultPos: { x: 8, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 4, video: "/videos/4.mp4", defaultPos: { x: 0, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 5, video: "/videos/5.mp4", defaultPos: { x: 4, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 }, 
-  { id: 6, video: "/videos/6.mp4", defaultPos: { x: 8, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 7, video: "/videos/7.mp4", defaultPos: { x: 0, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 8, video: "/videos/8.mp4", defaultPos: { x: 4, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 9, video: "/videos/9.mp4", defaultPos: { x: 8, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 1, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/1_zxmmxn.mp4", defaultPos: { x: 0, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 2, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/2_xutarq.mp4", defaultPos: { x: 4, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 3, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/3_avk1kw.mp4", defaultPos: { x: 8, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 4, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635495/4_d40igg.mp4", defaultPos: { x: 0, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 5, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635489/5_rbgelk.mp4", defaultPos: { x: 4, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 }, 
+  { id: 6, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635504/6_ndmwy7.mp4", defaultPos: { x: 8, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 7, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/7_jf7smd.mp4", defaultPos: { x: 0, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 8, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635508/8_obcekq.mp4", defaultPos: { x: 4, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
+  { id: 9, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635513/9_g0rd2k.mp4", defaultPos: { x: 8, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
 ];
 
 export default function VideoShowcaseSection() {
