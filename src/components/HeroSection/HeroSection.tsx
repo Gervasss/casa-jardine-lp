@@ -3,6 +3,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import Image from 'next/image';
 import GradientMenu from "@/src/ui/GradientMenu";
 import styles from './HeroSection.module.css';
 
@@ -89,9 +90,11 @@ const HeroSection = () => {
         }}
       >
         <div className={styles['loader-content']}>
-          <img
-            src="https://i.postimg.cc/wv53059m/Casa-Jardine-Marca-Verde.png"
+          <Image
+            src="/CasaJardine-Marca-Verde.png"
             alt="Logo Casa Jardine"
+            width={180}
+            height={111}
             className={styles['loader-logo']}
           />
           <div className={styles['loader-line']}></div>
@@ -103,7 +106,14 @@ const HeroSection = () => {
       </nav>
 
       <div className={styles['hero-bg-wrapper']}>
-        <div className={styles['hero-overlay']}></div>
+        <Image
+          src="/IMG_3912.jpg"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          className={styles['hero-bg-image']}
+        />
       </div>
 
       <div className={styles['hero-content']}>

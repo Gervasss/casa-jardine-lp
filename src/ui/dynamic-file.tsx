@@ -5,8 +5,7 @@ import { motion } from "framer-motion"
 
 interface FrameComponentProps {
   video: string
-  width: number | string
-  height: number | string
+  poster: string
   className?: string
   corner: string
   edgeHorizontal: string
@@ -20,8 +19,7 @@ interface FrameComponentProps {
 
 function FrameComponent({
   video,
-  width,
-  height,
+  poster,
   className = "",
   corner,
   edgeHorizontal,
@@ -33,7 +31,6 @@ function FrameComponent({
   isHovered,
 }: FrameComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [hasInteracted, setHasInteracted] = useState(false)
 
   // Sincroniza Play/Pause
   useEffect(() => {
@@ -42,7 +39,6 @@ function FrameComponent({
 
     if (isHovered) {
       videoElement.play().catch(() => {})
-      setHasInteracted(true)
     } else {
       videoElement.pause()
     }
@@ -83,12 +79,13 @@ function FrameComponent({
             <video
               className="w-full h-full object-cover transition-all duration-700"
               src={video}
+              poster={poster}
               loop
               muted
               playsInline
               // "auto" garante que o navegador tente baixar o primeiro frame 
               // para servir de "foto" enquanto o vídeo está pausado.
-              preload={hasInteracted ? "auto" : "metadata"}
+              preload="none"
               ref={videoRef}
               style={{ 
                 opacity: 1,

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,17 +11,23 @@ import { MdTouchApp } from "react-icons/md";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const videoFrames = [
-  { id: 1, video: "/videos/1.mp4", defaultPos: { x: 0, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 2, video: "/videos/2.mp4", defaultPos: { x: 4, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 3, video: "/videos/3.mp4", defaultPos: { x: 8, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 4, video: "/videos/4.mp4", defaultPos: { x: 0, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 5, video: "/videos/5.mp4", defaultPos: { x: 4, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 }, 
-  { id: 6, video: "/videos/6.mp4", defaultPos: { x: 8, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 7, video: "/videos/7.mp4", defaultPos: { x: 0, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 8, video: "/videos/8.mp4", defaultPos: { x: 4, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 9, video: "/videos/9.mp4", defaultPos: { x: 8, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-];
+const videoFrames = Array.from({ length: 9 }, (_, index) => {
+  const id = index + 1;
+
+  return {
+    id,
+    video: `/videos/${id}.mp4`,
+    poster: `/videos/${id}.png`,
+    defaultPos: { x: (index % 3) * 4, y: Math.floor(index / 3) * 4, w: 4, h: 4 },
+    mediaSize: 1,
+    isHovered: false,
+    corner: "0",
+    edgeHorizontal: "0",
+    edgeVertical: "0",
+    borderThickness: 1,
+    borderSize: 1,
+  };
+});
 
 export default function VideoShowcaseSection() {
   const sectionRef = useRef(null);
@@ -115,9 +122,11 @@ export default function VideoShowcaseSection() {
         </div>
 
         <div ref={logoRef} className={styles["logo-overlay"]}>
-          <img 
+          <Image
             src="/CasaJardine-Marca-Bege.png" 
             alt="Casa Jardine Logo" 
+            width={320}
+            height={197}
             className={styles["central-logo"]} 
           />
         </div>

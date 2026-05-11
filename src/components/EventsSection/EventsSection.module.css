@@ -82,8 +82,8 @@
 .cardInner { border-radius: 22px; overflow: hidden; background: white; }
 
 .imageWrapper { position: relative; height: 300px; overflow: hidden; }
-.imageWrapper img { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; }
-.eventCard:hover .imageWrapper img { transform: scale(1.1); }
+.eventImage { object-fit: cover; transition: transform 1s ease; }
+.eventCard:hover .eventImage { transform: scale(1.1); }
 
 .viewMoreBtn {
   position: absolute;

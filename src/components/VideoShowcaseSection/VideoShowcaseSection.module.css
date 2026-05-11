@@ -70,6 +70,7 @@
 
 .central-logo {
     width: clamp(180px, 25vw, 320px);
+    height: auto;
     margin-top: -54px;
     filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.3));
     /* Melhora performance de filtros no Desktop */
