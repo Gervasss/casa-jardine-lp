@@ -1,9 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import GradientMenu from "@/src/ui/GradientMenu";
+import dynamic from 'next/dynamic';
 import styles from './HeroSection.module.css';
+
+const GradientMenu = dynamic(() => import("@/src/ui/GradientMenu"), {
+  ssr: false,
+  loading: () => null,
+});
 
 interface HeroSectionProps {
   onExplore?: () => void;
@@ -11,6 +15,12 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onExplore }: HeroSectionProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowMenu(true), 900);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!isTransitioning) return;
@@ -41,7 +51,7 @@ const HeroSection = ({ onExplore }: HeroSectionProps) => {
         aria-hidden="true"
       >
         <div className={styles['loader-content']}>
-          <Image
+          <img
             src="/optimized/CasaJardine-Marca-Verde-360.webp"
             alt=""
             width={180}
@@ -53,11 +63,17 @@ const HeroSection = ({ onExplore }: HeroSectionProps) => {
       </div>
 
       <nav className={styles['hero-menu-wrapper']}>
-        <GradientMenu />
+        {showMenu && <GradientMenu />}
       </nav>
 
       <div className={styles['hero-bg-wrapper']}>
         <picture>
+          <source type="image/avif" media="(max-width: 480px)" srcSet="/optimized/hero-480.avif" />
+          <source type="image/avif" media="(max-width: 768px)" srcSet="/optimized/hero-640.avif" />
+          <source type="image/avif" media="(max-width: 1280px)" srcSet="/optimized/hero-768.avif" />
+          <source type="image/avif" media="(max-width: 1600px)" srcSet="/optimized/hero-1440.avif" />
+          <source type="image/avif" srcSet="/optimized/hero-1600.avif" />
+          <source media="(max-width: 480px)" srcSet="/optimized/hero-480.webp" />
           <source media="(max-width: 768px)" srcSet="/optimized/hero-768.webp" />
           <source media="(max-width: 1280px)" srcSet="/optimized/hero-1280.webp" />
           <img

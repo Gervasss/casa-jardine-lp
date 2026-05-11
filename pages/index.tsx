@@ -67,6 +67,38 @@ function HomePage() {
 
                 {/* Favicon e Viewport */}
                 <link rel="icon" type="image/png" href="/casaLogo1.jpg" />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-480.avif"
+                    type="image/avif"
+                    media="(max-width: 480px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-640.avif"
+                    type="image/avif"
+                    media="(min-width: 481px) and (max-width: 768px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-1440.avif"
+                    type="image/avif"
+                    media="(min-width: 769px) and (max-width: 1600px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-1600.avif"
+                    type="image/avif"
+                    media="(min-width: 1601px)"
+                    fetchPriority="high"
+                />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
 
