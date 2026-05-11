@@ -42,12 +42,11 @@ export function WhatsAppFloat() {
     "Olá! Seja bem-vindo à Casa Jardine. Como podemos ajudar a tornar o seu momento inesquecível hoje?";
 
   useEffect(() => {
-    if (isOpen) {
-      setIsTyping(true);
-      const t = setTimeout(() => setIsTyping(false), 2000);
-      return () => clearTimeout(t);
-    }
-  }, [isOpen]);
+    if (!isTyping) return;
+
+    const t = setTimeout(() => setIsTyping(false), 2000);
+    return () => clearTimeout(t);
+  }, [isTyping]);
 
   const sendWhatsAppMessage = (message: string) => {
     const encoded = encodeURIComponent(message);
@@ -208,7 +207,10 @@ export function WhatsAppFloat() {
       </AnimatePresence>
 
       <motion.button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsTyping(true);
+          setIsOpen(true);
+        }}
         className={styles.floatBtn}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

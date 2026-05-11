@@ -1,16 +1,11 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 
 interface FrameComponentProps {
   video: string
-<<<<<<< HEAD
   poster: string
-=======
-  width?: number | string
-  height?: number | string
->>>>>>> 58c1045fd246bcca351f50b98097da7670f81d74
   className?: string
   corner: string
   edgeHorizontal: string
@@ -44,10 +39,7 @@ interface DynamicFrameLayoutProps {
 
 function FrameComponent({
   video,
-<<<<<<< HEAD
   poster,
-=======
->>>>>>> 58c1045fd246bcca351f50b98097da7670f81d74
   className = "",
   corner,
   edgeHorizontal,
@@ -61,7 +53,6 @@ function FrameComponent({
 }: FrameComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Sincroniza Play/Pause
   useEffect(() => {
     const videoElement = videoRef.current
     if (!videoElement || !isRevealed) return
@@ -79,9 +70,9 @@ function FrameComponent({
       style={{
         width: "100%",
         height: "100%",
-        minHeight: "150px", // Garante que o container tenha tamanho mesmo sem o vídeo
+        minHeight: "150px",
         transition: "width 0.3s ease-in-out, height 0.3s ease-in-out",
-        backgroundColor: "#2a2a20" // Cor de fundo para evitar o "branco"
+        backgroundColor: "#2a2a20",
       }}
     >
       <div className="relative w-full h-full overflow-hidden">
@@ -105,44 +96,24 @@ function FrameComponent({
               transition: "transform 0.3s ease-in-out",
             }}
           >
-<<<<<<< HEAD
-            <video
-              className="w-full h-full object-cover transition-all duration-700"
-              src={video}
-              poster={poster}
-              loop
-              muted
-              playsInline
-              // "auto" garante que o navegador tente baixar o primeiro frame 
-              // para servir de "foto" enquanto o vídeo está pausado.
-              preload="none"
-              ref={videoRef}
-              style={{ 
-                opacity: 1,
-                filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(8px)",
-                transform: isHovered ? "scale(1)" : "scale(1.1)",
-                backgroundColor: "#1a1a15"
-              }}
-            />
-=======
             {isRevealed && (
               <video
                 className="w-full h-full object-cover transition-all duration-700"
                 src={video}
+                poster={poster}
                 loop
                 muted
                 playsInline
                 preload={isHovered ? "auto" : "metadata"}
                 ref={videoRef}
-                style={{ 
+                style={{
                   opacity: 1,
                   filter: isHovered ? "grayscale(0%) blur(0px)" : "grayscale(100%) blur(8px)",
                   transform: isHovered ? "scale(1)" : "scale(1.1)",
-                  backgroundColor: "#1a1a15"
+                  backgroundColor: "#1a1a15",
                 }}
               />
             )}
->>>>>>> 58c1045fd246bcca351f50b98097da7670f81d74
           </div>
         </div>
 
@@ -163,13 +134,13 @@ function FrameComponent({
   )
 }
 
-export function DynamicFrameLayout({ 
-  frames: initialFrames, 
+export function DynamicFrameLayout({
+  frames: initialFrames,
   className = "",
   showFrames = false,
   hoverSize = 6,
   gapSize = 4,
-  revealInterval = 180
+  revealInterval = 180,
 }: DynamicFrameLayoutProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState<{ row: number; col: number } | null>(null)
@@ -242,9 +213,9 @@ export function DynamicFrameLayout({
         gridTemplateRows: getRowSizes(),
         gridTemplateColumns: getColSizes(),
         gap: `${gapSize}px`,
-        minHeight: "500px", // Crucial: dá um tamanho para o grid no mobile
+        minHeight: "500px",
         transition: "grid-template-rows 0.4s ease, grid-template-columns 0.4s ease",
-        touchAction: "pan-y" 
+        touchAction: "pan-y",
       }}
     >
       {initialFrames.map((frame, index) => {
@@ -263,7 +234,7 @@ export function DynamicFrameLayout({
               y: isRevealed ? 0 : 18,
             }}
             transition={{ duration: 0.55, ease: "easeOut" }}
-            style={{ 
+            style={{
               zIndex: hovered?.row === row && hovered?.col === col ? 10 : 1,
               pointerEvents: isRevealed ? "auto" : "none",
             }}

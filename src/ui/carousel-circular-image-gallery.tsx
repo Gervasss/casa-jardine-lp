@@ -12,10 +12,20 @@ interface ImageGalleryProps {
   images?: ImageData[];
 }
 
+interface GsapTimeline {
+  set: (target: Element, vars: unknown) => GsapTimeline;
+  to: (target: Element, vars: unknown) => GsapTimeline;
+}
+
+interface GsapInstance {
+  registerPlugin: (plugin: unknown) => void;
+  timeline: (vars?: unknown) => GsapTimeline;
+}
+
 declare global {
   interface Window {
-    gsap: any;
-    MotionPathPlugin: any;
+    gsap?: GsapInstance;
+    MotionPathPlugin?: unknown;
   }
 }
 
@@ -69,10 +79,27 @@ export function ImageGallery({ images = [] }: ImageGalleryProps) {
   }, [opened, gsapReady, next, images]);
 
   useEffect(() => {
-    setDisabled(true);
+    if (!disabled) return;
+
     const timeout = setTimeout(() => setDisabled(false), 1200);
     return () => clearTimeout(timeout);
-  }, [opened]);
+  }, [disabled]);
+
+  const moveNext = () => {
+    setDisabled(true);
+    next();
+  };
+
+  const movePrev = () => {
+    setDisabled(true);
+    prev();
+  };
+
+  const selectImage = (idx: number) => {
+    if (disabled) return;
+    setDisabled(true);
+    setOpened(idx);
+  };
 
   if (images.length === 0) return null;
 
@@ -101,21 +128,21 @@ export function ImageGallery({ images = [] }: ImageGalleryProps) {
               </div>
             ))}
           <div className="absolute left-0 top-0 z-[100] h-full w-full pointer-events-none">
-            <Tabs images={images} activeIndex={opened} onSelect={(idx: number) => !disabled && setOpened(idx)} />
+            <Tabs images={images} activeIndex={opened} onSelect={selectImage} />
           </div>
         </div>
 
         {/* BOTÕES AJUSTADOS PARA MOBILE */}
         <button
           className="absolute -left-4 md:-left-20 top-1/2 z-[101] flex h-12 w-12 md:h-14 md:w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white transition-all hover:bg-white/30 disabled:opacity-0 active:scale-90"
-          onClick={prev}
+          onClick={movePrev}
           disabled={disabled}
         >
           <IoChevronBackOutline size={24} />
         </button>
         <button
           className="absolute -right-4 md:-right-20 top-1/2 z-[101] flex h-12 w-12 md:h-14 md:w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white transition-all hover:bg-white/30 disabled:opacity-0 active:scale-90"
-          onClick={next}
+          onClick={moveNext}
           disabled={disabled}
         >
           <IoChevronForwardOutline size={24} />
@@ -137,7 +164,7 @@ interface GalleryImageProps {
 }
 
 function GalleryImage({ url, open, inPlace, id, onInPlace, total, gsapReady }: GalleryImageProps) {
-  const [firstLoad, setLoaded] = useState(true);
+  const firstLoad = useRef(true);
   const clip = useRef<SVGCircleElement>(null);
 
   const width = 500;
@@ -166,9 +193,10 @@ function GalleryImage({ url, open, inPlace, id, onInPlace, total, gsapReady }: G
     const gsap = window.gsap;
     if (!gsap || !clip.current || !gsapReady) return;
 
-    setLoaded(false);
-    const flipDuration = firstLoad ? 0 : 0.6;
-    const bounceDuration = firstLoad ? 0.01 : 1.2;
+    const isFirstLoad = firstLoad.current;
+    firstLoad.current = false;
+    const flipDuration = isFirstLoad ? 0 : 0.6;
+    const bounceDuration = isFirstLoad ? 0.01 : 1.2;
 
     if (open) {
       gsap.timeline()
@@ -185,7 +213,7 @@ function GalleryImage({ url, open, inPlace, id, onInPlace, total, gsapReady }: G
           ease: "bounce.out",
         });
     }
-  }, [open, gsapReady]);
+  }, [open, gsapReady, id, onInPlace]);
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full" preserveAspectRatio="xMidYMid slice">
@@ -220,7 +248,13 @@ function GalleryImage({ url, open, inPlace, id, onInPlace, total, gsapReady }: G
   );
 }
 
-function Tabs({ images, activeIndex, onSelect }: any) {
+interface TabsProps {
+  images: ImageData[];
+  activeIndex: number;
+  onSelect: (index: number) => void;
+}
+
+function Tabs({ images, activeIndex, onSelect }: TabsProps) {
   const width = 500;
   const height = 500;
   const radius = 6;
@@ -230,7 +264,7 @@ function Tabs({ images, activeIndex, onSelect }: any) {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full pointer-events-none">
-      {images.map((img: any, i: number) => (
+      {images.map((img, i) => (
         <circle
           key={`${img.url}-${i}`}
           cx={startX + i * (radius * 2 + gap)}

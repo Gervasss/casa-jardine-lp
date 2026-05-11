@@ -11,13 +11,22 @@ import { MdTouchApp } from "react-icons/md";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-<<<<<<< HEAD
-const videoFrames = Array.from({ length: 9 }, (_, index) => {
+const videoFrames = [
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/1_zxmmxn.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/2_xutarq.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/3_avk1kw.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635495/4_d40igg.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635489/5_rbgelk.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635504/6_ndmwy7.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/7_jf7smd.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635508/8_obcekq.mp4",
+  "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635513/9_g0rd2k.mp4",
+].map((video, index) => {
   const id = index + 1;
 
   return {
     id,
-    video: `/videos/${id}.mp4`,
+    video,
     poster: `/videos/${id}.png`,
     defaultPos: { x: (index % 3) * 4, y: Math.floor(index / 3) * 4, w: 4, h: 4 },
     mediaSize: 1,
@@ -29,19 +38,6 @@ const videoFrames = Array.from({ length: 9 }, (_, index) => {
     borderSize: 1,
   };
 });
-=======
-const videoFrames = [
-  { id: 1, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/1_zxmmxn.mp4", defaultPos: { x: 0, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 2, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635491/2_xutarq.mp4", defaultPos: { x: 4, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 3, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/3_avk1kw.mp4", defaultPos: { x: 8, y: 0, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 4, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635495/4_d40igg.mp4", defaultPos: { x: 0, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 5, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635489/5_rbgelk.mp4", defaultPos: { x: 4, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 }, 
-  { id: 6, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635504/6_ndmwy7.mp4", defaultPos: { x: 8, y: 4, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 7, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635488/7_jf7smd.mp4", defaultPos: { x: 0, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 8, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635508/8_obcekq.mp4", defaultPos: { x: 4, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-  { id: 9, video: "https://res.cloudinary.com/ddwu6s64v/video/upload/v1774635513/9_g0rd2k.mp4", defaultPos: { x: 8, y: 8, w: 4, h: 4 }, mediaSize: 1, isHovered: false, corner: "0", edgeHorizontal: "0", edgeVertical: "0", borderThickness: 1, borderSize: 1 },
-];
->>>>>>> 58c1045fd246bcca351f50b98097da7670f81d74
 
 export default function VideoShowcaseSection() {
   const sectionRef = useRef(null);
@@ -118,13 +114,8 @@ export default function VideoShowcaseSection() {
           />
         </div>
 
-<<<<<<< HEAD
-        <div ref={logoRef} className={styles["logo-overlay"]}>
-          <Image
-=======
         <div className={styles["logo-overlay"]}>
-          <img 
->>>>>>> 58c1045fd246bcca351f50b98097da7670f81d74
+          <Image
             src="/CasaJardine-Marca-Bege.png" 
             alt="Casa Jardine Logo" 
             width={320}
