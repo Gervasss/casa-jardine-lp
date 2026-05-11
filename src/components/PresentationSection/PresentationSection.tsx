@@ -5,7 +5,6 @@ import { motion, Variants } from 'framer-motion';
 import { ImageZoom } from "@/src/ui/ImageZoom";
 import VideoPlayer from "@/src/ui/video-player";
 import styles from './PresentationSection.module.css';
-import { IoChevronForward } from "react-icons/io5";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -133,9 +132,9 @@ const PresentationSection = () => {
                 {/* 1. IMAGENS À ESQUERDA */}
                 <motion.div className={styles['image-mosaic']} variants={imageContainerVariants}>
                     <motion.div variants={imageVariants} className={`${styles['mosaic-item']} ${styles['large']}`}>
-                        <ImageZoom src="/IMG_1.jpg" alt="Salão" width={600} height={800} />
+                        <ImageZoom src="/optimized/IMG_1-900.webp" alt="Salão" width={600} height={800} />
                     </motion.div>
-                    {["/IMG_7.jpg", "/IMG_3.jpg", "/IMG_4.jpg", "/IMG_3912.jpg", "/IMG_6.jpg", "/IMG_3886.jpg", "/IMG_3897.jpg", "/IMG_3908.jpg", "/IMG_5.jpg"].map((img, i) => (
+                    {["/optimized/IMG_7-500.webp", "/optimized/IMG_3-500.webp", "/optimized/IMG_4-500.webp", "/optimized/IMG_3912-500.webp", "/optimized/IMG_6-500.webp", "/optimized/IMG_3886-500.webp", "/optimized/IMG_3897-500.webp", "/optimized/IMG_3908-500.webp", "/optimized/IMG_5-500.webp"].map((img, i) => (
                         <motion.div key={i} variants={imageVariants} className={styles['mosaic-item']}>
                             <ImageZoom src={img} alt="Galeria" width={300} height={400} />
                         </motion.div>
@@ -211,7 +210,7 @@ const PresentationSection = () => {
                     <p className={styles['video-subtitle']} ref={videoSubtitleRef}>Conheça os espaços, a estrutura e comece a visualizar cada momento ganhando forma. </p>
                 </div>
                 <div className={styles['video-container']} ref={videoPlayerRef}>
-                    <VideoPlayer src="/casa-jardine.mp4" poster="/background.jpeg" />
+                    <VideoPlayer src="/casa-jardine.mp4" poster="/optimized/background-1280.webp" />
                 </div>
             </div>
         </section>

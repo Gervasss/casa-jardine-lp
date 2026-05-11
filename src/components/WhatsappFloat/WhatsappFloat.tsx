@@ -89,7 +89,7 @@ export function WhatsAppFloat() {
                   <div className={styles.headerLeft}>
                     <div className={styles.avatarWrap}>
                       <Image
-                        src="/casaLogo1.jpg"
+                        src="/optimized/casaLogo1-96.webp"
                         alt="Logo Casa Jardine"
                         width={50}
                         height={50}

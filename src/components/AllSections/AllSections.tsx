@@ -1,66 +1,107 @@
 "use client"
 
-import React, { useLayoutEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
-
-// Imports das Seções
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import HeroSection from '../HeroSection/HeroSection';
-import PresentationSection from '../PresentationSection/PresentationSection';
-import ProfileSection from '../ProfileSection/ProfileSection';
-import EventsSection from '../EventsSection/EventsSection';
-import InstagramSection from '../InstagramSection/InstagramSection';
-import VideoShowcaseSection from '../VideoShowcaseSection/VideoShowcaseSection';
-import ContactSection from '../ContactSection/ContactSection';
-import LocationSection from '../LocalSection/LocalSection';
-import FooterSection from '../FooterSection/FooterSection';
-import { WhatsAppFloat } from '../WhatsappFloat/WhatsappFloat';
 
-gsap.registerPlugin(ScrollTrigger);
+const PresentationSection = dynamic(() => import('../PresentationSection/PresentationSection'), { ssr: false });
+const ProfileSection = dynamic(() => import('../ProfileSection/ProfileSection'), { ssr: false });
+const EventsSection = dynamic(() => import('../EventsSection/EventsSection'), { ssr: false });
+const InstagramSection = dynamic(() => import('../InstagramSection/InstagramSection'), { ssr: false });
+const VideoShowcaseSection = dynamic(() => import('../VideoShowcaseSection/VideoShowcaseSection'), { ssr: false });
+const ContactSection = dynamic(() => import('../ContactSection/ContactSection'), { ssr: false });
+const LocationSection = dynamic(() => import('../LocalSection/LocalSection'), { ssr: false });
+const FooterSection = dynamic(() => import('../FooterSection/FooterSection'), { ssr: false });
+const WhatsAppFloat = dynamic(
+  () => import('../WhatsappFloat/WhatsappFloat').then((mod) => mod.WhatsAppFloat),
+  { ssr: false }
+);
 
 const AllSections = () => {
+  const [showDeferredSections, setShowDeferredSections] = useState(false);
 
-  useLayoutEffect(() => {
-    // Inicializa o Lenis para o Scroll Suave
-    const lenis = new Lenis({
-      duration: 3.0, // Duração do scroll (mais alto = mais calmo)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva de suavização
-      smoothWheel: true,
-      wheelMultiplier: 1, // Sensibilidade
-      touchMultiplier: 2,
-    });
-
-    // Sincroniza o ScrollTrigger do GSAP com o Lenis
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    // Desativa a suavização do ticker do GSAP para evitar conflitos
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-    };
+  const loadDeferredSections = useCallback(() => {
+    setShowDeferredSections(true);
   }, []);
 
-  return (
-    <main className="page-wrapper">
-      <HeroSection />
-      <PresentationSection />
-      <ProfileSection />
-      <EventsSection />
-      <InstagramSection />
-      <VideoShowcaseSection />
-      <ContactSection />
-      <LocationSection />
-      <FooterSection />
+  useEffect(() => {
+    const events: Array<keyof WindowEventMap> = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
 
-      <WhatsAppFloat />
-    </main>
+    events.forEach((eventName) => {
+      window.addEventListener(eventName, loadDeferredSections, { once: true, passive: true });
+    });
+    window.addEventListener('load-deferred-sections', loadDeferredSections);
+
+    return () => {
+      events.forEach((eventName) => window.removeEventListener(eventName, loadDeferredSections));
+      window.removeEventListener('load-deferred-sections', loadDeferredSections);
+    };
+  }, [loadDeferredSections]);
+
+  useLayoutEffect(() => {
+    if (!showDeferredSections) return;
+
+    let cleanupLenis: (() => void) | undefined;
+    const setupLenis = async () => {
+      const [{ default: gsap }, { ScrollTrigger }, { default: Lenis }] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+        import('lenis'),
+      ]);
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      const raf = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(raf);
+      gsap.ticker.lagSmoothing(0);
+
+      cleanupLenis = () => {
+        lenis.destroy();
+        gsap.ticker.remove(raf);
+      };
+    };
+
+    const idleId = window.requestIdleCallback
+      ? window.requestIdleCallback(() => void setupLenis(), { timeout: 2200 })
+      : window.setTimeout(() => void setupLenis(), 1200);
+
+    return () => {
+      cleanupLenis?.();
+      if (typeof idleId === "number") {
+        window.clearTimeout(idleId);
+      } else {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [showDeferredSections]);
+
+  return (
+    <div className="page-wrapper">
+      <HeroSection onExplore={loadDeferredSections} />
+      {showDeferredSections && (
+        <>
+          <PresentationSection />
+          <ProfileSection />
+          <EventsSection />
+          <InstagramSection />
+          <VideoShowcaseSection />
+          <ContactSection />
+          <LocationSection />
+          <FooterSection />
+          <WhatsAppFloat />
+        </>
+      )}
+    </div>
   );
 };
 

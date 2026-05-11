@@ -35,10 +35,19 @@
   z-index: 1;
 }
 
+.hero-bg-wrapper picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-bg-image {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  animation: zoomVideo 20s ease-in-out infinite alternate;
+  transform: scale(1.04);
 }
 
 /* OVERLAY (Escurecimento) */
@@ -87,6 +96,9 @@
   max-width: 66rem;
   line-height: 1.08;
   font-family: serif;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroReveal 0.65s ease-out 0.08s forwards;
 }
 
 .hero-title-italic {
@@ -103,6 +115,8 @@
   font-weight: 300;
   line-height: 1.65;
   opacity: 0;
+  transform: translateY(18px);
+  animation: heroReveal 0.65s ease-out 0.28s forwards;
 }
 
 .hero-cta {
@@ -120,6 +134,8 @@
   font-size: clamp(0.78rem, 0.85vw, 0.95rem);
   min-height: 46px;
   opacity: 0;
+  transform: translateY(18px);
+  animation: heroReveal 0.65s ease-out 0.42s forwards;
 }
 
 .hero-cta:hover {
@@ -158,7 +174,6 @@
   height: 8px;
   background-color: #D2B48C; 
   border-radius: 2px;
-  animation: scrollAnim 1.5s ease-in-out infinite;
 }
 
 .scroll-text {
@@ -221,6 +236,11 @@
   justify-content: center;
   pointer-events: none;
   transform: translateY(100%);
+  transition: transform 0.72s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.transition-loader-active {
+  transform: translateY(0);
 }
 
 /* CONTEÚDO DENTRO DO LOADER */
@@ -265,6 +285,16 @@
   );
   backdrop-filter: blur(1px);
   z-index: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-bg-image {
+    animation: zoomVideo 24s ease-in-out infinite alternate;
+  }
+
+  .mouse-wheel {
+    animation: scrollAnim 1.5s ease-in-out infinite;
+  }
 }
 
 /* ANIMAÇÕES */
@@ -336,6 +366,13 @@
 
 @keyframes fadeIn {
   to { opacity: 0.8; }
+}
+
+@keyframes heroReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1919px) {

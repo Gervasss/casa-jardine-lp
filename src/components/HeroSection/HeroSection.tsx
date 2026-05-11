@@ -1,126 +1,49 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import GradientMenu from "@/src/ui/GradientMenu";
 import styles from './HeroSection.module.css';
 
-gsap.registerPlugin(SplitText);
+interface HeroSectionProps {
+  onExplore?: () => void;
+}
 
-const HeroSection = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const loaderRef = useRef<HTMLDivElement>(null);
+const HeroSection = ({ onExplore }: HeroSectionProps) => {
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  useLayoutEffect(() => {
-    if (!titleRef.current || !descriptionRef.current || !ctaRef.current) return;
+  useEffect(() => {
+    if (!isTransitioning) return;
 
-    const ctx = gsap.context(() => {
-      const mySplitText = new SplitText(titleRef.current, {
-        type: "chars, words",
-        charsClass: "char"
-      });
+    const loadTimer = window.setTimeout(() => {
+      onExplore?.();
+    }, 420);
 
-      gsap.set([descriptionRef.current, ctaRef.current], {
-        autoAlpha: 0,
-        y: 22,
-      });
+    const scrollTimer = window.setTimeout(() => {
+      document.getElementById('present')?.scrollIntoView({ behavior: 'auto' });
+    }, 760);
 
-      const tl = gsap.timeline();
+    const resetTimer = window.setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1450);
 
-      tl.from(mySplitText.chars, {
-        duration: 1.4,
-        opacity: 0,
-        scale: 0,
-        y: 80,
-        rotationX: 180,
-        transformOrigin: "50% 50% -50",
-        ease: "expo.out",
-        stagger: 0.04,
-      })
-      .to(descriptionRef.current, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        clearProps: "transform",
-      }, "+=0.05")
-      .to(ctaRef.current, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        clearProps: "transform",
-      }, "+=0.1");
-
-      return () => {
-        tl.kill();
-        mySplitText.revert();
-      };
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const handleConhecerClick = () => {
-    const tl = gsap.timeline();
-
-    // 1. Entrada do Loader: Mais suave com expo.inOut
-    tl.to(loaderRef.current, {
-      y: "0%",
-      duration: 0.9,
-      ease: "expo.inOut"
-    })
-    // 2. Scroll estratégico
-    .add(() => {
-      const element = document.getElementById('present');
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop,
-          behavior: 'auto'
-        });
-      }
-    }, "-=0.2") // Inicia o scroll um pouco antes do loader travar no meio
-    // 3. Saída do Loader: Expo.out dá aquele efeito de deslize premium
-    .to(loaderRef.current, {
-      y: "-100%",
-      duration: 1.2,
-      delay: 0.2,
-      ease: "expo.inOut",
-      onComplete: () => {
-        gsap.set(loaderRef.current, { y: "100%" });
-      }
-    });
-  };
+    return () => {
+      window.clearTimeout(loadTimer);
+      window.clearTimeout(scrollTimer);
+      window.clearTimeout(resetTimer);
+    };
+  }, [isTransitioning, onExplore]);
 
   return (
-    <section ref={containerRef} className={styles['hero-container']} id="hero">
+    <section className={styles['hero-container']} id="hero">
       <div
-        ref={loaderRef}
-        className={styles['transition-loader']}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#1a1a1a',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transform: 'translateY(100%)',
-          willChange: 'transform' // Otimização de GPU
-        }}
+        className={`${styles['transition-loader']} ${isTransitioning ? styles['transition-loader-active'] : ''}`}
+        aria-hidden="true"
       >
         <div className={styles['loader-content']}>
           <Image
-            src="/CasaJardine-Marca-Verde.png"
-            alt="Logo Casa Jardine"
+            src="/optimized/CasaJardine-Marca-Verde-360.webp"
+            alt=""
             width={180}
             height={111}
             className={styles['loader-logo']}
@@ -134,31 +57,37 @@ const HeroSection = () => {
       </nav>
 
       <div className={styles['hero-bg-wrapper']}>
-        <Image
-          src="/IMG_3912.jpg"
-          alt=""
-          fill
-          preload
-          sizes="100vw"
-          className={styles['hero-bg-image']}
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/optimized/hero-768.webp" />
+          <source media="(max-width: 1280px)" srcSet="/optimized/hero-1280.webp" />
+          <img
+            src="/optimized/hero-1920.webp"
+            alt=""
+            className={styles['hero-bg-image']}
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
 
       <div className={styles['hero-content']}>
-        <h1 ref={titleRef} className={styles['hero-title']}>
-          Alguns encontros não são apenas eventos.  <span className={styles['hero-title-italic']}>São experiências que ficam. </span>
+        <h1 className={styles['hero-title']}>
+          Alguns encontros não são apenas eventos. <span className={styles['hero-title-italic']}>São experiências que ficam. </span>
         </h1>
 
-        <p ref={descriptionRef} className={styles['hero-description']}>
-          Na Casa Jardine, cada detalhe é pensado para que você não apenas celebre,  mas sinta, viva e leve esse momento com você. 
+        <p className={styles['hero-description']}>
+          Na Casa Jardine, cada detalhe é pensado para que você não apenas celebre, mas sinta, viva e leve esse momento com você.
         </p>
 
-        <button ref={ctaRef} className={styles['hero-cta']} onClick={handleConhecerClick}>
-          Quero viver essa experiência 
+        <button
+          className={styles['hero-cta']}
+          onClick={() => setIsTransitioning(true)}
+        >
+          Quero viver essa experiência
         </button>
       </div>
 
-      <div className={styles['hero-scroll-indicator']}>
+      <div className={styles['hero-scroll-indicator']} aria-hidden="true">
         <div className={styles['mouse-container']}>
           <div className={styles['mouse-wheel']}></div>
         </div>

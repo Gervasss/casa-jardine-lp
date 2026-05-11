@@ -116,7 +116,7 @@ export default function VideoShowcaseSection() {
 
         <div className={styles["logo-overlay"]}>
           <Image
-            src="/CasaJardine-Marca-Bege.png" 
+            src="/optimized/CasaJardine-Marca-Bege-640.webp" 
             alt="Casa Jardine Logo" 
             width={320}
             height={197}

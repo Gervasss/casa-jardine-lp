@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import { MantineProvider, createTheme } from '@mantine/core';
 import '@/src/styles/globals.css';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 // carrega o efeito só no client (evita mismatch no SSR)

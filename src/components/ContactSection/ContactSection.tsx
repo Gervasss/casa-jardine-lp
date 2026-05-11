@@ -198,7 +198,7 @@ export default function ContactSection() {
                             }}
                             className={styles.infoRow}
                         >
-                            <a className={styles.iconBubble} href={whatsappDirect} target="_blank" rel="noreferrer">
+                            <a className={styles.iconBubble} href={whatsappDirect} target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp da Casa Jardine">
                                 <FaWhatsapp size={24} />
                             </a>
                             <div className={styles.infoText}>
@@ -212,7 +212,7 @@ export default function ContactSection() {
                             }}
                             className={styles.infoRow}
                         >
-                            <a className={styles.iconBubble} href="mailto:contato@casajardine.com.br">
+                            <a className={styles.iconBubble} href="mailto:contato@casajardine.com.br" aria-label="Enviar email para Casa Jardine">
                                 <Mail size={24} />
                             </a>
                             <div className={styles.infoText}>
@@ -226,7 +226,7 @@ export default function ContactSection() {
                             }}
                             className={styles.socialRow}
                         >
-                            <a className={styles.social} href="https://www.instagram.com/casajardinevca/" target="_blank" rel="noreferrer">
+                            <a className={styles.social} href="https://www.instagram.com/casajardinevca/" target="_blank" rel="noreferrer" aria-label="Abrir Instagram da Casa Jardine">
                                 <BsInstagram size={22} />
                             </a>
                             <div className={styles.infoText}>
