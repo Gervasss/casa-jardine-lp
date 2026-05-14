@@ -7,7 +7,7 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DynamicFrameLayout } from "@/src/ui/dynamic-file";
 import styles from "./VideoShowcaseSection.module.css";
-import { MdTouchApp } from "react-icons/md";
+import { MdAdsClick, MdTouchApp } from "react-icons/md";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -124,9 +124,11 @@ export default function VideoShowcaseSection() {
           />
         </div>
 
-        <div className={styles["mobile-hint"]}>
-          <MdTouchApp className={styles["hint-icon"]} />
-          <span>Dê dois Toques nos quadros para interagir</span>
+        <div className={styles["interaction-hint"]}>
+          <MdAdsClick className={`${styles["hint-icon"]} ${styles["desktop-icon"]}`} />
+          <MdTouchApp className={`${styles["hint-icon"]} ${styles["mobile-icon"]}`} />
+          <span className={styles["desktop-hint-text"]}>Passe o mouse nos quadros para interagir</span>
+          <span className={styles["mobile-hint-text"]}>Dê dois toques nos quadros para interagir</span>
         </div>
       </div>
     </section>

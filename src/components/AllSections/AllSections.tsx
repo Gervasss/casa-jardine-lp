@@ -42,6 +42,9 @@ const AllSections = () => {
     if (!showDeferredSections) return;
 
     let cleanupLenis: (() => void) | undefined;
+    let refreshFrame = 0;
+    let cancelled = false;
+
     const setupLenis = async () => {
       const [{ default: gsap }, { ScrollTrigger }, { default: Lenis }] = await Promise.all([
         import('gsap'),
@@ -49,39 +52,51 @@ const AllSections = () => {
         import('lenis'),
       ]);
 
+      if (cancelled) return;
+
       gsap.registerPlugin(ScrollTrigger);
 
       const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        duration: 1.55,
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        lerp: 0.075,
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
+        syncTouch: true,
+        syncTouchLerp: 0.08,
+        touchInertiaExponent: 1.65,
+        wheelMultiplier: 0.75,
+        touchMultiplier: 1.15,
+        overscroll: false,
+        anchors: {
+          duration: 1.25,
+          easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        },
       });
 
-      lenis.on('scroll', ScrollTrigger.update);
+      const unsubscribeScroll = lenis.on('scroll', ScrollTrigger.update);
 
       const raf = (time: number) => lenis.raf(time * 1000);
       gsap.ticker.add(raf);
       gsap.ticker.lagSmoothing(0);
 
+      refreshFrame = window.requestAnimationFrame(() => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      });
+
       cleanupLenis = () => {
+        unsubscribeScroll();
         lenis.destroy();
         gsap.ticker.remove(raf);
+        if (refreshFrame) window.cancelAnimationFrame(refreshFrame);
       };
     };
 
-    const idleId = window.requestIdleCallback
-      ? window.requestIdleCallback(() => void setupLenis(), { timeout: 2200 })
-      : window.setTimeout(() => void setupLenis(), 1200);
+    void setupLenis();
 
     return () => {
+      cancelled = true;
       cleanupLenis?.();
-      if (typeof idleId === "number") {
-        window.clearTimeout(idleId);
-      } else {
-        window.cancelIdleCallback(idleId);
-      }
     };
   }, [showDeferredSections]);
 

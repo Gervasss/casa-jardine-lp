@@ -45,8 +45,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Isola o grid para não travar o scroll da página */
-    contain: strict; 
+    /* Isola layout/estilo sem cortar a dica posicionada acima do grid */
+    contain: layout style; 
 }
 
 .grid-wrapper {
@@ -74,8 +74,34 @@
     margin-top: -54px;
 }
 
-/* DICA MOBILE */
-.mobile-hint {
+.interaction-hint {
+    display: flex;
+    position: absolute;
+    top: -58px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 9px 18px;
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.78rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    white-space: nowrap;
+    z-index: 5;
+    pointer-events: none;
+    animation: fade-interval 4.5s infinite ease-in-out;
+}
+
+.hint-icon {
+    font-size: 1.1rem;
+    animation: pulse-hint 2s infinite ease-in-out;
+}
+
+.mobile-icon,
+.mobile-hint-text {
     display: none;
 }
 
@@ -96,30 +122,21 @@
         contain: none; /* Mobile lida melhor sem restrições estritas */
     }
 
-    .mobile-hint {
-        display: flex;
-        position: absolute;
+    .interaction-hint {
         top: -55px;
-        left: 50%;
-        transform: translateX(-50%);
-        align-items: center;
-        gap: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
         padding: 8px 18px;
-        border-radius: 50px;
-        color: rgba(255, 255, 255, 0.9);
         font-size: 0.75rem;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        white-space: nowrap;
-        z-index: 5;
-        pointer-events: none;
         animation: fade-interval 4s infinite ease-in-out;
     }
 
-    .hint-icon {
-        font-size: 1.1rem;
-        animation: pulse-hint 2s infinite ease-in-out;
+    .desktop-icon,
+    .desktop-hint-text {
+        display: none;
+    }
+
+    .mobile-icon,
+    .mobile-hint-text {
+        display: inline-flex;
     }
 }
 
