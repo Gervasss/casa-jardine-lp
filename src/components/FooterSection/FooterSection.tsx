@@ -28,7 +28,7 @@ export default function FooterSection() {
                     <a href="#hero" onClick={(e) => scrollToId(e, "hero")} className={styles.logo}>
                         <span className={styles.logoIcon}>
                             <Image
-                                src="/casaLogo1.jpg"
+                                src="/optimized/casaLogo1-96.webp"
                                 alt="Logo Casa Jardine"
                                 fill
                                 sizes="36px"

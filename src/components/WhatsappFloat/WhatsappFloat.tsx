@@ -42,12 +42,11 @@ export function WhatsAppFloat() {
     "Olá! Seja bem-vindo(a) à Casa Jardine. Ficamos felizes em fazer parte do início de momentos especiais. Seja uma celebração, encontro corporativo, festa infantil, aniversário ou qualquer experiência que mereça ser vivida com todo cuidado, estamos aqui para ajudar. Nos conte um pouco sobre o que você está planejando e nossa equipe terá prazer em atender você.";
 
   useEffect(() => {
-    if (isOpen) {
-      setIsTyping(true);
-      const t = setTimeout(() => setIsTyping(false), 2000);
-      return () => clearTimeout(t);
-    }
-  }, [isOpen]);
+    if (!isTyping) return;
+
+    const t = setTimeout(() => setIsTyping(false), 2000);
+    return () => clearTimeout(t);
+  }, [isTyping]);
 
   const sendWhatsAppMessage = (message: string) => {
     const encoded = encodeURIComponent(message);
@@ -90,7 +89,7 @@ export function WhatsAppFloat() {
                   <div className={styles.headerLeft}>
                     <div className={styles.avatarWrap}>
                       <Image
-                        src="/casaLogo1.jpg"
+                        src="/optimized/casaLogo1-96.webp"
                         alt="Logo Casa Jardine"
                         width={50}
                         height={50}
@@ -208,7 +207,10 @@ export function WhatsAppFloat() {
       </AnimatePresence>
 
       <motion.button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsTyping(true);
+          setIsOpen(true);
+        }}
         className={styles.floatBtn}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

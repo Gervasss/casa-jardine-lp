@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useLayoutEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -260,7 +261,13 @@ export default function EventsSection() {
                             <div className={styles.eventCard} onClick={() => setActiveGallery(event)}>
                                 <div className={styles.cardInner}>
                                     <div className={styles.imageWrapper}>
-                                        <img src={event.image} alt={event.title} />
+                                        <Image
+                                            src={event.image}
+                                            alt={event.title}
+                                            fill
+                                            sizes="(max-width: 768px) 85vw, 400px"
+                                            className={styles.eventImage}
+                                        />
                                         <div className={styles.imageOverlay} />
                                         <button className={styles.viewMoreBtn}>
                                             Explorar Detalhes

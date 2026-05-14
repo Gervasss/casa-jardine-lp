@@ -5,6 +5,7 @@ import Script from "next/script";
 function HomePage() {
     // URL exata do subdomínio onde este projeto está hospedado na Vercel
     const siteUrlVercel = "https://casa-jardine-lp.vercel.app";
+    const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
     const ogImageUrl = `${siteUrlVercel}/IMG_3912.jpg`; // Caminho absoluto para a imagem OG
 
@@ -66,26 +67,61 @@ function HomePage() {
 
                 {/* Favicon e Viewport */}
                 <link rel="icon" type="image/png" href="/casaLogo1.jpg" />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-480.avif"
+                    type="image/avif"
+                    media="(max-width: 480px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-640.avif"
+                    type="image/avif"
+                    media="(min-width: 481px) and (max-width: 768px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-1440.avif"
+                    type="image/avif"
+                    media="(min-width: 769px) and (max-width: 1600px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/optimized/hero-1600.avif"
+                    type="image/avif"
+                    media="(min-width: 1601px)"
+                    fetchPriority="high"
+                />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
 
-            {/* Google Analytics Script - Fora do Head para performance */}
-            <Script
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-            />
-            <Script
-                id="google-analytics"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'GA_MEASUREMENT_ID');
-                    `,
-                }}
-            />
+            {gaMeasurementId && (
+                <>
+                    <Script
+                        strategy="lazyOnload"
+                        src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+                    />
+                    <Script
+                        id="google-analytics"
+                        strategy="lazyOnload"
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag(){dataLayer.push(arguments);}
+                                gtag('js', new Date());
+                                gtag('config', '${gaMeasurementId}');
+                            `,
+                        }}
+                    />
+                </>
+            )}
 
             {/* Structured Data: Local Business */}
             <Script

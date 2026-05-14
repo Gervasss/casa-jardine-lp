@@ -59,7 +59,7 @@ export default function LocationSection() {
             className={styles.mapWrapperPremium}
           >
             <Image 
-              src="/mapa.png" 
+              src="/optimized/mapa-1200.webp" 
               alt="Mapa Localização Casa Jardine"
               fill
               style={{ objectFit: 'cover' }}

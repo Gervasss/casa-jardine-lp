@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -158,9 +159,11 @@ const ProfileSection = () => {
           className={styles['founder-card']}
         >
           <div className={styles['founder-image-frame']}>
-            <img
+            <Image
               src={foundersImageUrl}
               alt="Karine Flores e Daisy Cardoso"
+              fill
+              sizes="(max-width: 1024px) 100vw, 460px"
               className={styles['founder-image']}
             />
           </div>

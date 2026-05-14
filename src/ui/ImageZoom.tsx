@@ -7,6 +7,10 @@ import styles from "./ImageZoom.module.css"
 import { cn } from "@/src/lib/utils"
 import 'react-medium-image-zoom/dist/styles.css'
 
+type CombinedZoomProps = Omit<UncontrolledProps, "children"> & {
+  zoomImg?: ImgHTMLAttributes<HTMLImageElement>
+}
+
 export interface ImageZoomProps extends ImageProps {
   zoomInProps?: ImgHTMLAttributes<HTMLImageElement>
   zoomProps?: UncontrolledProps
@@ -26,11 +30,9 @@ export function ImageZoom({
   children,
   ...props
 }: ImageZoomProps) {
-  const combinedZoomProps = {
+  const combinedZoomProps: CombinedZoomProps = {
     ...zoomProps,
-    dialogClassName: styles['zoom-dialog'],
-    overlayClassName: styles['zoom-overlay'],
-    closeText: "Fechar",
+    classDialog: styles['zoom-dialog'],
     zoomMargin: 20,
     wrapElement: "span",
     zoomImg: {
@@ -42,7 +44,7 @@ export function ImageZoom({
       ),
       ...zoomInProps,
     },
-  } as any
+  }
 
   return (
     <Zoom {...combinedZoomProps}>
@@ -51,6 +53,7 @@ export function ImageZoom({
           className={cn(styles['zoom-trigger-image'], className)}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px"
           {...props}
+          alt={props.alt}
         />
       )}
     </Zoom>
