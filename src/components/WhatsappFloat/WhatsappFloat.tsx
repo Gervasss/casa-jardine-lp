@@ -39,7 +39,7 @@ export function WhatsAppFloat() {
   ];
 
   const welcomeMessage =
-    "Olá! Seja bem-vindo à Casa Jardine. Como podemos ajudar a tornar o seu momento inesquecível hoje?";
+    "Olá! Seja bem-vindo(a) à Casa Jardine. Ficamos felizes em fazer parte do início de momentos especiais. Seja uma celebração, encontro corporativo, festa infantil, aniversário ou qualquer experiência que mereça ser vivida com todo cuidado, estamos aqui para ajudar. Nos conte um pouco sobre o que você está planejando e nossa equipe terá prazer em atender você.";
 
   useEffect(() => {
     if (isOpen) {
