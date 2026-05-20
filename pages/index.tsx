@@ -4,7 +4,7 @@ import Script from "next/script";
 
 function HomePage() {
     // URL exata do subdomínio onde este projeto está hospedado na Vercel
-    const siteUrlVercel = "https://casa-jardine-lp.vercel.app";
+    const siteUrlVercel = "https://casajardineeventos.com.br/";
     const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
     const ogImageUrl = `${siteUrlVercel}/IMG_3912.jpg`; // Caminho absoluto para a imagem OG
